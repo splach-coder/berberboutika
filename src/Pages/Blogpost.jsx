@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "../components/Header/Header";
-import CreativeBlogGrid from "../components/Sections/Blog/CreativeBlogGrid";
+import BlogPostView from "../components/Sections/Blog/BlogPostView";
 
 
 
@@ -8,7 +8,7 @@ const Blog = () => {
   return (
     <div className="bg-white">
       <Header enableHoverEffect={false} />
-      <CreativeBlogGrid />
+      <BlogPostView />
     </div>
   );
 };

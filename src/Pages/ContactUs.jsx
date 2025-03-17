@@ -1,16 +1,14 @@
 import React from 'react';
+import ContactForm from "../components/Sections/ContactForm/ContactForm";
 import Header from "../components/Header/Header";
-import CreativeBlogGrid from "../components/Sections/Blog/CreativeBlogGrid";
 
-
-
-const Blog = () => {
+const ContactUs = () => {
   return (
     <div className="bg-white">
       <Header enableHoverEffect={false} />
-      <CreativeBlogGrid />
+        <ContactForm />
     </div>
   );
 };
 
-export default Blog;
+export default ContactUs;

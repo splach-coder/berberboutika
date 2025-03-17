@@ -9,8 +9,14 @@ export default {
       },
       colors: {
         primary: {
-          light: "#6D28D9",
-          dark: "#272727",
+          light: "#FFF3DF",  // Antique white
+          dark: "#49371B",   // dark coffee
+        },
+        background: {
+          flashLIght: "#EFEFEF",  // Flash light
+          white: "#FFFFFF",  // White
+          light: "#F4F4F4",  // Crisp White
+          dark: "#272727",   // Dark background for dark mode (optional)
         },
       },
     },

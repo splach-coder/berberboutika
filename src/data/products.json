@@ -1,0 +1,210 @@
+[
+    {
+        "id": 1,
+        "title": "FES MULTIFRUITS GOLD CANDLE TIN - CITRUS SCENTED",
+        "description": "Luxury hand-poured candle with citrus notes",
+        "price": "€1,679.00",
+        "images": [
+            "/images/products/1.jpeg",
+            "/images/products/2.jpeg"
+        ],
+        "inStock": true,
+        "category": "Candles",
+        "purchaseCount": 42
+    },
+    {
+        "id": 2,
+        "title": "MULTI-FRUIT POT COVERS",
+        "description": "Decorative ceramic with fruit motifs",
+        "price": "€23.00",
+        "images": [
+            "/images/products/3.jpeg",
+            "/images/products/4.jpeg"
+        ],
+        "inStock": false,
+        "category": "Pot Covers",
+        "purchaseCount": 89
+    },
+    {
+        "id": 3,
+        "title": "ORANGE FRUIT POT COVERS",
+        "description": "Elegant orange-themed design",
+        "price": "A partir de €23.00",
+        "images": [
+            "/images/products/5.jpeg",
+            "/images/products/6.jpeg"
+        ],
+        "inStock": true,
+        "category": "Pot Covers",
+        "purchaseCount": 56
+    },
+    {
+        "id": 4,
+        "title": "POMEGRANATE FRUIT POT COVERS WITH ORNATE DESIGN PATTERN",
+        "description": "Rich burgundy pomegranate motif",
+        "price": "A partir de €23.00",
+        "images": [
+            "/images/products/7.jpeg",
+            "/images/products/8.jpeg"
+        ],
+        "inStock": true,
+        "category": "Pot Covers",
+        "purchaseCount": 32
+    },
+    {
+        "id": 5,
+        "title": "LEMON CERAMIC DIFFUSER",
+        "description": "Fresh citrus aroma diffuser",
+        "price": "€35.00",
+        "images": [
+            "/images/products/9.jpeg",
+            "/images/products/10.jpeg"
+        ],
+        "inStock": true,
+        "category": "Diffusers",
+        "purchaseCount": 78
+    },
+    {
+        "id": 6,
+        "title": "APPLE BLOSSOM CANDLE JAR",
+        "description": "Sweet apple scented candle",
+        "price": "€42.00",
+        "images": [
+            "/images/products/11.jpeg",
+            "/images/products/12.jpeg"
+        ],
+        "inStock": false,
+        "category": "Candles",
+        "purchaseCount": 65
+    },
+    {
+        "id": 7,
+        "title": "FIG LEAF ROOM SPRAY",
+        "description": "Refreshing botanical fragrance",
+        "price": "€28.50",
+        "images": [
+            "/images/products/13.jpeg",
+            "/images/products/14.jpeg"
+        ],
+        "inStock": true,
+        "category": "Room Sprays",
+        "purchaseCount": 29
+    },
+    {
+        "id": 8,
+        "title": "BERRY COLLECTION GIFT SET",
+        "description": "Three-piece berry themed set",
+        "price": "€75.00",
+        "images": [
+            "/images/products/15.jpeg",
+            "/images/products/16.jpeg"
+        ],
+        "inStock": true,
+        "category": "Gift Sets",
+        "purchaseCount": 91
+    },
+    {
+        "id": 9,
+        "title": "GRAPE VINE TEALIGHT HOLDER",
+        "description": "Delicate grape pattern ceramic",
+        "price": "€19.95",
+        "images": [
+            "/images/products/1.jpeg",
+            "/images/products/2.jpeg"
+        ],
+        "inStock": false,
+        "category": "Holders",
+        "purchaseCount": 54
+    },
+    {
+        "id": 10,
+        "title": "PEACH BLOSSOM REED DIFFUSER",
+        "description": "Long-lasting sweet peach aroma",
+        "price": "€32.00",
+        "images": [
+            "/images/products/3.jpeg",
+            "/images/products/4.jpeg"
+        ],
+        "inStock": true,
+        "category": "Diffusers",
+        "purchaseCount": 47
+    },
+    {
+        "id": 11,
+        "title": "APERITIVO BOWLS MIXED EARTH",
+        "description": "Elegant serving bowls with mixed earth tones",
+        "price": "A partir de €25.00",
+        "images": [
+            "/images/products/5.jpeg",
+            "/images/products/6.jpeg"
+        ],
+        "inStock": true,
+        "category": "Bowls",
+        "purchaseCount": 38
+    },
+    {
+        "id": 12,
+        "title": "BOUGIES JIBAL TERRE MÊLÉE - OUD SCENTED",
+        "description": "Luxury candle with earthy oud fragrance",
+        "price": "A partir de €79.00",
+        "images": [
+            "/images/products/7.jpeg",
+            "/images/products/8.jpeg"
+        ],
+        "inStock": true,
+        "category": "Candles",
+        "purchaseCount": 63
+    },
+    {
+        "id": 13,
+        "title": "SEMI-MATTE EARTHENWARE PERFUME BURNER",
+        "description": "Elegant ceramic perfume burner",
+        "price": "€24.50",
+        "images": [
+            "/images/products/9.jpeg",
+            "/images/products/10.jpeg"
+        ],
+        "inStock": true,
+        "category": "Burners",
+        "purchaseCount": 25
+    },
+    {
+        "id": 14,
+        "title": "FRUIT BOWL D24CM MIXED EARTH",
+        "description": "Stylish fruit bowl with mixed earth finish",
+        "price": "€85.00",
+        "images": [
+            "/images/products/11.jpeg",
+            "/images/products/12.jpeg"
+        ],
+        "inStock": false,
+        "category": "Bowls",
+        "purchaseCount": 72
+    },
+    {
+        "id": 15,
+        "title": "MOROCCAN CERAMIC SOAP DISH",
+        "description": "Traditional hand-painted Moroccan design",
+        "price": "€18.00",
+        "images": [
+            "/images/products/13.jpeg",
+            "/images/products/14.jpeg"
+        ],
+        "inStock": true,
+        "category": "Bathroom",
+        "purchaseCount": 50
+    },
+    {
+        "id": 16,
+        "title": "JASMINE & SANDALWOOD ROOM SPRAY",
+        "description": "Luxurious home fragrance blend",
+        "price": "€29.50",
+        "images": [
+            "/images/products/15.jpeg",
+            "/images/products/16.jpeg"
+        ],
+        "inStock": true,
+        "category": "Room Sprays",
+        "purchaseCount": 83
+    }
+]

@@ -1,16 +1,14 @@
 import React from 'react';
+import FaqComponent from "../components/Sections/FAQ/FaqComponent";
 import Header from "../components/Header/Header";
-import CreativeBlogGrid from "../components/Sections/Blog/CreativeBlogGrid";
 
-
-
-const Blog = () => {
+const Faq = () => {
   return (
     <div className="bg-white">
       <Header enableHoverEffect={false} />
-      <CreativeBlogGrid />
+      <FaqComponent />
     </div>
   );
 };
 
-export default Blog;
+export default Faq;
