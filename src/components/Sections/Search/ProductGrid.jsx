@@ -130,7 +130,7 @@ const ProductGrid = () => {
       const query = searchQuery.toLowerCase();
       result = result.filter(
         (product) =>
-          product.title.toLowerCase().includes(query) ||
+          product.name.toLowerCase().includes(query) ||
           product.category.toLowerCase().includes(query) ||
           product.description.toLowerCase().includes(query)
       );
@@ -313,7 +313,7 @@ const ProductGrid = () => {
                     ? product.images[1]
                     : product.images[0]
                 }
-                alt={product.title}
+                alt={product.name}
                 className="w-full h-full object-cover transition-all duration-500"
               />
 
@@ -356,7 +356,7 @@ const ProductGrid = () => {
             {/* Product info section */}
             <div className="bg-white p-4 h-24 flex flex-col justify-between">
               <h3 className="text-sm font-medium mb-2 line-clamp-2 overflow-hidden">
-                {product.title}
+                {product.name}
               </h3>
               <div className="flex justify-between items-center">
                 <p className="text-gray-800 font-semibold">{product.price}</p>

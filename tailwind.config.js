@@ -18,6 +18,12 @@ export default {
           light: "#F4F4F4",  // Crisp White
           dark: "#272727",   // Dark background for dark mode (optional)
         },
+        button: {
+          etsy: "#F1641F",
+          hoverEtsy: "#d85113",
+          whatsapp: "#24D366",
+          hoverWhatsapp: "#12843c"
+        }
       },
     },
   },

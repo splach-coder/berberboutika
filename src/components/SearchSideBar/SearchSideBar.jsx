@@ -34,7 +34,7 @@ const SearchSidebar = ({ searchTerm, isOpen, toggleSidebar, setSearchTerm, setIs
     if (!products.length) return;
     
     const filtered = products.filter(product => 
-      product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -133,7 +133,7 @@ const SearchSidebar = ({ searchTerm, isOpen, toggleSidebar, setSearchTerm, setIs
                       />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-medium leading-tight mb-1">{product.title}</h4>
+                      <h4 className="font-medium leading-tight mb-1">{product.name}</h4>
                       <p className="text-sm text-gray-500 mb-2">{product.category}</p>
                       <p className="font-medium">{product.price}</p>
                     </div>

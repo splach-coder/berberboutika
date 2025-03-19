@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import {
   FaHeart,
   FaFacebook,
@@ -18,46 +19,10 @@ import {
 import { MdVerified } from "react-icons/md";
 
 const ProductDetail = () => {
-  // Product data - in a real app, this would come from an API or props
-  const product = {
-    id: 1,
-    name: "Handcrafted Wooden Side Table",
-    description:
-      "A beautiful handcrafted wooden side table made from sustainable oak. Perfect for any living room or bedroom decor.",
-    price: 129.99,
-    discountPrice: 99.99,
-    currency: "$",
-    rating: 4.8,
-    reviewCount: 124,
-    stock: 7,
-    sku: "WOOD-TABLE-001",
-    category: "Furniture",
-    tags: ["handmade", "sustainable", "oak", "furniture"],
-    images: [
-      "/images/products/12.jpeg",
-      "/images/products/10.jpeg",
-      "/images/products/14.jpeg",
-      "/images/products/13.jpeg",
-    ],
-    specifications: [
-      { name: "Dimensions", value: 'H: 24" x W: 18" x D: 18"' },
-      { name: "Weight", value: "15 lbs" },
-      { name: "Material", value: "Solid Oak" },
-      { name: "Finish", value: "Natural Wax" },
-      { name: "Assembly", value: "Minimal assembly required" },
-    ],
-    sellerInfo: {
-      name: "Artisan Woodworks",
-      rating: 4.9,
-      responseTime: "Within 24 hours",
-      isVerified: true,
-    },
-    shippingInfo: {
-      freeShipping: true,
-      estimatedDelivery: "3-5 business days",
-      returns: "30-day returns",
-    },
-  };
+
+  // Get the product data passed via state
+  const location = useLocation();
+  const product = location.state?.product;
 
   // State for image slider
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -365,14 +330,14 @@ const ProductDetail = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
             <button
-              className="flex-1 bg-primary-light hover:bg-indigo-700 text-white py-3 px-4 rounded-lg font-medium flex items-center justify-center"
+              className="flex-1 bg-button-whatsapp hover:bg-indigo-700 text-white py-3 px-4 rounded-lg font-medium flex items-center justify-center"
               onClick={checkoutWithWhatsapp}
             >
               <FaWhatsapp className="mr-2" />
               Buy with WhatsApp
             </button>
             <button
-              className="flex-1 bg-white border border-primary-light text-primary-light hover:bg-indigo-50 py-3 px-4 rounded-lg font-medium flex items-center justify-center"
+              className="flex-1 bg-button-etsy border border-button-etsy text-primary-light hover:bg-indigo-50 py-3 px-4 rounded-lg font-medium flex items-center justify-center"
               onClick={checkoutWithEtsy}
             >
               <FaEtsy className="mr-2" />
