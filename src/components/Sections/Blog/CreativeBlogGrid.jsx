@@ -12,7 +12,7 @@ const CreativeBlogGrid = () => {
       readTime: 5,
       comments: 12,
       views: 1240,
-      image: "/api/placeholder/600/400",
+      image: "/images/slider/slider3.jpg",
       date: "Mar 10, 2025",
       featured: true
     },
@@ -101,11 +101,11 @@ const CreativeBlogGrid = () => {
     : blogPosts.filter(post => post.category.toLowerCase() === filter);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
+    <div className="max-w-6xl mx-auto px-4 pt-40 py-8">
       {/* Section Title */}
       <div className="mb-12 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Journal</h2>
-        <div className="w-24 h-1 bg-primary-light mx-auto"></div>
+        <div className="w-24 h-1 bg-primary-dark mx-auto"></div>
         <p className="mt-4 text-gray-600 max-w-xl mx-auto">
           Discover insights, stories, and ideas from our design experts and craftspeople
         </p>
@@ -118,7 +118,7 @@ const CreativeBlogGrid = () => {
             key={category}
             className={`px-4 py-2 text-sm rounded-full transition-all duration-300 ${
               filter === category 
-                ? 'bg-primary-light text-white shadow-md' 
+                ? 'bg-primary-dark text-white shadow-md' 
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             }`}
             onClick={() => setFilter(category)}

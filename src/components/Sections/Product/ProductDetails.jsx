@@ -303,7 +303,7 @@ const ProductDetail = () => {
                     )
                   )
                 }
-                className="w-12 h-8 border-t border-b border-gray-300 text-center"
+                className="w-12 h-8 border-t border-b border-gray-300 text-center bg-white text-black"
               />
               <button
                 className="w-8 h-8 rounded-r border border-gray-300 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50"
