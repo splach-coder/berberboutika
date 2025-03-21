@@ -22,7 +22,9 @@ export default {
           etsy: "#F1641F",
           hoverEtsy: "#d85113",
           whatsapp: "#24D366",
-          hoverWhatsapp: "#12843c"
+          hoverWhatsapp: "#12843c",
+          dark: "#49371B",
+          darkHover: "#3C2D16",
         }
       },
     },

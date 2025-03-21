@@ -158,7 +158,7 @@ const ProductsPage = () => {
   };
 
   return (
-    <section className="mx-auto px-4 py-12 bg-white text-black pt-28">
+    <section className="mx-auto px-4 py-12 bg-white text-black pt-36">
         <ProductQuickViewModal
           product={selectedProduct}
           isOpen={isQuickViewOpen}

@@ -1,0 +1,170 @@
+{
+    "blogs": [
+      {
+        "id": 1,
+        "title": "How Much Should You Spend on a Quality Sofa?",
+        "category": "Home Decor",
+        "shortDescription": "Discover the perfect balance between budget and quality when investing in a sofa.",
+        "dateOfRelease": "2023-09-15",
+        "views": 1245,
+        "img": "/images/blog/sofa.jpg",
+        "text": "When it comes to buying a sofa, it's essential to strike the right balance between cost and quality. A sofa is not just a piece of furniture; it’s a centerpiece of your living room and a place where memories are made. In this article, we’ll explore how much you should realistically spend based on your needs, lifestyle, and budget. From budget-friendly options to luxury investments, we’ll guide you through the decision-making process.",
+        "likesCount": 89
+      },
+      {
+        "id": 2,
+        "title": "Top 5 Sustainable Home Decor Trends for 2023",
+        "category": "Sustainability",
+        "shortDescription": "Explore eco-friendly decor trends that are both stylish and planet-friendly.",
+        "dateOfRelease": "2023-09-20",
+        "views": 2310,
+        "img": "/images/blog/sustainable-decor.jpg",
+        "text": "As awareness about climate change grows, so does the demand for sustainable home decor. This year, designers are embracing eco-conscious materials and practices like never before. In this article, we’ll cover the top five sustainable decor trends for 2023, including upcycled furniture, natural textiles, and energy-efficient lighting. Learn how you can make your home both beautiful and environmentally responsible.",
+        "likesCount": 156
+      },
+      {
+        "id": 3,
+        "title": "The Ultimate Guide to Small Space Living",
+        "category": "Interior Design",
+        "shortDescription": "Maximize your small space with clever design tips and tricks.",
+        "dateOfRelease": "2023-09-25",
+        "views": 1876,
+        "img": "/images/blog/small-space.jpg",
+        "text": "Living in a small space doesn’t mean sacrificing style or comfort. With the right design strategies, you can transform even the tiniest apartment into a functional and inviting home. In this guide, we’ll share expert tips on maximizing storage, choosing multi-functional furniture, and using color and lighting to create the illusion of more space. Whether you’re a renter or homeowner, these ideas will help you make the most of your square footage.",
+        "likesCount": 123
+      },
+      {
+        "id": 4,
+        "title": "Why Handcrafted Furniture is Worth the Investment",
+        "category": "Furniture",
+        "shortDescription": "Learn why handcrafted furniture is a timeless addition to any home.",
+        "dateOfRelease": "2023-10-01",
+        "views": 987,
+        "img": "/images/blog/handcrafted-furniture.jpg",
+        "text": "In a world of mass-produced goods, handcrafted furniture stands out as a symbol of quality and artistry. While it may come with a higher price tag, the durability, uniqueness, and craftsmanship of handmade pieces make them a worthwhile investment. In this article, we’ll discuss the benefits of choosing handcrafted furniture, how to identify authentic pieces, and tips for incorporating them into your home decor.",
+        "likesCount": 78
+      },
+      {
+        "id": 5,
+        "title": "10 Must-Have Kitchen Gadgets for Every Home Cook",
+        "category": "Kitchen",
+        "shortDescription": "Upgrade your cooking game with these essential kitchen tools.",
+        "dateOfRelease": "2023-10-05",
+        "views": 3456,
+        "img": "/images/blog/kitchen-gadgets.jpg",
+        "text": "Whether you’re a seasoned chef or a beginner in the kitchen, having the right tools can make all the difference. From versatile knives to innovative gadgets, we’ve curated a list of the top 10 must-have kitchen tools every home cook should own. Discover how these gadgets can simplify meal prep, save time, and elevate your culinary creations.",
+        "likesCount": 210
+      },
+      {
+        "id": 6,
+        "title": "The Science of Sleep: How to Improve Your Rest",
+        "category": "Wellness",
+        "shortDescription": "Unlock the secrets to better sleep and wake up refreshed every day.",
+        "dateOfRelease": "2023-10-10",
+        "views": 2789,
+        "img": "/images/blog/sleep.jpg",
+        "text": "Sleep is essential for physical and mental well-being, yet many people struggle to get enough restful sleep. In this article, we’ll explore the science behind sleep cycles, share tips for creating a sleep-friendly environment, and discuss how habits like screen time and diet impact your rest. Learn how small changes can lead to big improvements in your sleep quality.",
+        "likesCount": 134
+      },
+      {
+        "id": 7,
+        "title": "5 Tech Gadgets That Will Change Your Life in 2023",
+        "category": "Technology",
+        "shortDescription": "Discover the latest gadgets revolutionizing how we live and work.",
+        "dateOfRelease": "2023-10-12",
+        "views": 4567,
+        "img": "/images/blog/tech-gadgets.jpg",
+        "text": "From smart home devices to wearable tech, innovation is reshaping our daily lives. In this article, we’ll highlight five game-changing gadgets released in 2023. Whether you’re looking to boost productivity, enhance entertainment, or simplify household chores, these tools will help you stay ahead of the curve. Get ready to embrace the future!",
+        "likesCount": 312
+      },
+      {
+        "id": 8,
+        "title": "Solo Travel: Why Exploring Alone is Worth It",
+        "category": "Travel",
+        "shortDescription": "Embrace the freedom of solo travel and discover yourself along the way.",
+        "dateOfRelease": "2023-10-15",
+        "views": 1987,
+        "img": "/images/blog/solo-travel.jpg",
+        "text": "Traveling alone might seem intimidating at first, but it’s one of the most rewarding experiences you can have. In this article, we’ll share why solo travel is worth considering, from the freedom to create your own itinerary to the opportunity for self-discovery. We’ll also provide practical tips for staying safe and making the most of your journey.",
+        "likesCount": 98
+      },
+      {
+        "id": 9,
+        "title": "How to Build Confidence in Just 30 Days",
+        "category": "Personal Development",
+        "shortDescription": "Transform your mindset and boost your confidence with this 30-day plan.",
+        "dateOfRelease": "2023-10-18",
+        "views": 3124,
+        "img": "/images/blog/confidence.jpg",
+        "text": "Confidence is a skill that can be developed with practice. In this article, we’ll guide you through a 30-day plan to build self-confidence by focusing on positive habits, overcoming self-doubt, and embracing challenges. Whether you’re preparing for a big presentation or simply want to feel more self-assured, these strategies will help you shine.",
+        "likesCount": 201
+      },
+      {
+        "id": 10,
+        "title": "The Power of Minimalism: Simplify Your Life",
+        "category": "Lifestyle",
+        "shortDescription": "Learn how adopting a minimalist lifestyle can bring clarity and joy.",
+        "dateOfRelease": "2023-10-20",
+        "views": 2456,
+        "img": "/images/blog/minimalism.jpg",
+        "text": "In a world filled with distractions and excess, minimalism offers a path to simplicity and fulfillment. In this article, we’ll explore the principles of minimalism and how they can transform your life. From decluttering your home to focusing on what truly matters, discover how letting go of the unnecessary can lead to greater happiness and purpose.",
+        "likesCount": 176
+      },
+      {
+        "id": 11,
+        "title": "The Art of Mindful Eating: Transform Your Relationship with Food",
+        "category": "Health",
+        "shortDescription": "Discover how mindful eating can improve your health and well-being.",
+        "dateOfRelease": "2023-10-22",
+        "views": 2345,
+        "img": "/images/blog/mindful-eating.jpg",
+        "text": "Mindful eating is about being present and fully engaged with your meals, rather than rushing through them. In this article, we’ll discuss how to cultivate mindful eating habits, the benefits of slowing down, and how this practice can help you make healthier food choices. Transform your relationship with food and enjoy every bite.",
+        "likesCount": 143
+      },
+      {
+        "id": 12,
+        "title": "Exploring Hidden Gems: The Best Off-the-Beaten-Path Destinations",
+        "category": "Travel",
+        "shortDescription": "Escape the crowds and uncover unique travel destinations around the world.",
+        "dateOfRelease": "2023-10-25",
+        "views": 3120,
+        "img": "/images/blog/hidden-gems.jpg",
+        "text": "While popular tourist spots are great, there’s something magical about discovering hidden gems. In this article, we’ll take you to lesser-known destinations that offer breathtaking landscapes, rich culture, and unforgettable experiences. Whether you’re planning your next adventure or dreaming of future travels, these off-the-beaten-path locations will inspire you.",
+        "likesCount": 278
+      },
+      {
+        "id": 13,
+        "title": "The Rise of AI: What You Need to Know About Artificial Intelligence",
+        "category": "Technology",
+        "shortDescription": "Understand the impact of AI on industries and everyday life.",
+        "dateOfRelease": "2023-10-28",
+        "views": 4231,
+        "img": "/images/blog/ai.jpg",
+        "text": "Artificial intelligence is no longer just a concept from sci-fi movies—it’s transforming industries and reshaping how we live and work. In this article, we’ll break down the basics of AI, its applications in healthcare, finance, and transportation, and the ethical considerations surrounding its use. Stay informed about the technology shaping the future.",
+        "likesCount": 345
+      },
+      {
+        "id": 14,
+        "title": "DIY Home Projects for Beginners: Start Small, Dream Big",
+        "category": "Home Improvement",
+        "shortDescription": "Get inspired to tackle easy DIY projects and upgrade your living space.",
+        "dateOfRelease": "2023-10-30",
+        "views": 1890,
+        "img": "/images/blog/diy-projects.jpg",
+        "text": "You don’t need to be a professional handyman to give your home a fresh look. In this article, we’ll walk you through beginner-friendly DIY projects that can make a big impact, from painting walls to building simple shelves. With a little creativity and effort, you can personalize your space and save money while doing it.",
+        "likesCount": 112
+      },
+      {
+        "id": 15,
+        "title": "The Joy of Journaling: Unlock Your Creativity and Clarity",
+        "category": "Personal Development",
+        "shortDescription": "Discover the benefits of journaling and how to start your own practice.",
+        "dateOfRelease": "2023-11-01",
+        "views": 2105,
+        "img": "/images/blog/journaling.jpg",
+        "text": "Journaling is more than just writing—it’s a powerful tool for self-reflection, goal-setting, and stress relief. In this article, we’ll explore the benefits of journaling, provide prompts to get you started, and share tips for making it a consistent habit. Whether you’re looking to boost creativity or gain clarity, journaling can be your secret weapon.",
+        "likesCount": 167
+      }
+    ]
+  }
+

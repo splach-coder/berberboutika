@@ -106,8 +106,8 @@ const ProductDetail = () => {
     <div className="max-w-6xl mx-auto px-4 pt-40 py-8">
       {/* Breadcrumb */}
       <div className="text-sm text-gray-500 mb-6">
-        <span className="hover:text-primary-light cursor-pointer">Home</span> /
-        <span className="hover:text-primary-light cursor-pointer">
+        <span className="hover:text-primary-dark cursor-pointer">Home</span> /
+        <span className="hover:text-primary-dark cursor-pointer">
           {" "}
           {product.category}
         </span>{" "}
@@ -361,7 +361,7 @@ const ProductDetail = () => {
               <button
                 className={`px-4 py-2 text-sm font-medium ${
                   activeTab === "description"
-                    ? "text-primary-light border-b-2 border-primary-light"
+                    ? "text-primary-dark border-b-2 border-primary-dark"
                     : "text-gray-500"
                 }`}
                 onClick={() => setActiveTab("description")}
@@ -371,7 +371,7 @@ const ProductDetail = () => {
               <button
                 className={`px-4 py-2 text-sm font-medium ${
                   activeTab === "specifications"
-                    ? "text-primary-light border-b-2 border-primary-light"
+                    ? "text-primary-dark border-b-2 border-primary-dark"
                     : "text-gray-500"
                 }`}
                 onClick={() => setActiveTab("specifications")}
@@ -381,7 +381,7 @@ const ProductDetail = () => {
               <button
                 className={`px-4 py-2 text-sm font-medium ${
                   activeTab === "shipping"
-                    ? "text-primary-light border-b-2 border-primary-light"
+                    ? "text-primary-dark border-b-2 border-primary-dark"
                     : "text-gray-500"
                 }`}
                 onClick={() => setActiveTab("shipping")}
@@ -391,7 +391,7 @@ const ProductDetail = () => {
               <button
                 className={`px-4 py-2 text-sm font-medium ${
                   activeTab === "reviews"
-                    ? "text-primary-light border-b-2 border-primary-light"
+                    ? "text-primary-dark border-b-2 border-primary-dark"
                     : "text-gray-500"
                 }`}
                 onClick={() => setActiveTab("reviews")}
@@ -470,7 +470,7 @@ const ProductDetail = () => {
               {activeTab === "shipping" && (
                 <div className="space-y-4">
                   <div className="flex items-center space-x-2">
-                    <FaShippingFast className="text-primary-light" />
+                    <FaShippingFast className="text-primary-dark" />
                     <h3 className="font-medium text-gray-800">
                       Shipping Information
                     </h3>
@@ -572,7 +572,7 @@ const ProductDetail = () => {
                       })}
                     </div>
                   </div>
-                  <button className="bg-primary-light hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-medium w-full">
+                  <button className="bg-button-dark hover:bg-button-darkHover text-white py-2 px-4 rounded-lg font-medium w-full transition-colors">
                     Write a Review
                   </button>
 

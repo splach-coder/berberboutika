@@ -1,0 +1,244 @@
+{
+    "reviews": [
+      {
+        "reviewId": 1,
+        "productId": 1,
+        "userId": 101,
+        "rating": 5,
+        "comment": "Absolutely love this side table! The craftsmanship is top-notch.",
+        "timestamp": "2023-10-01T14:23:00Z"
+      },
+      {
+        "reviewId": 2,
+        "productId": 1,
+        "userId": 102,
+        "rating": 4,
+        "comment": "Great quality, but the assembly instructions could be clearer.",
+        "timestamp": "2023-10-02T09:15:00Z"
+      },
+      {
+        "reviewId": 3,
+        "productId": 1,
+        "userId": 103,
+        "rating": 5,
+        "comment": "Perfect addition to my living room decor. Highly recommend!",
+        "timestamp": "2023-10-03T18:45:00Z"
+      },
+      {
+        "reviewId": 4,
+        "productId": 2,
+        "userId": 104,
+        "rating": 4,
+        "comment": "Good value for money, but delivery took longer than expected.",
+        "timestamp": "2023-10-04T11:30:00Z"
+      },
+      {
+        "reviewId": 5,
+        "productId": 2,
+        "userId": 105,
+        "rating": 5,
+        "comment": "Beautiful design and sturdy construction. Very satisfied!",
+        "timestamp": "2023-10-05T16:20:00Z"
+      },
+      {
+        "reviewId": 6,
+        "productId": 2,
+        "userId": 106,
+        "rating": 3,
+        "comment": "Decent product, but the finish has some minor scratches.",
+        "timestamp": "2023-10-06T10:10:00Z"
+      },
+      {
+        "reviewId": 7,
+        "productId": 3,
+        "userId": 107,
+        "rating": 5,
+        "comment": "Fantastic piece of furniture. Worth every penny!",
+        "timestamp": "2023-10-07T13:55:00Z"
+      },
+      {
+        "reviewId": 8,
+        "productId": 3,
+        "userId": 108,
+        "rating": 4,
+        "comment": "Nice table, but it's slightly smaller than I expected.",
+        "timestamp": "2023-10-08T17:30:00Z"
+      },
+      {
+        "reviewId": 9,
+        "productId": 3,
+        "userId": 109,
+        "rating": 5,
+        "comment": "Very happy with my purchase. Excellent customer service too!",
+        "timestamp": "2023-10-09T08:40:00Z"
+      },
+      {
+        "reviewId": 10,
+        "productId": 4,
+        "userId": 110,
+        "rating": 4,
+        "comment": "Solid build quality, but the color is a bit lighter in person.",
+        "timestamp": "2023-10-10T12:10:00Z"
+      },
+      {
+        "reviewId": 11,
+        "productId": 4,
+        "userId": 111,
+        "rating": 5,
+        "comment": "This table exceeded my expectations. Beautiful and functional!",
+        "timestamp": "2023-10-11T15:25:00Z"
+      },
+      {
+        "reviewId": 12,
+        "productId": 4,
+        "userId": 112,
+        "rating": 4,
+        "comment": "Great product, though the assembly was a bit tricky.",
+        "timestamp": "2023-10-12T19:50:00Z"
+      },
+      {
+        "reviewId": 13,
+        "productId": 5,
+        "userId": 113,
+        "rating": 5,
+        "comment": "Love the natural wax finish. It feels very eco-friendly.",
+        "timestamp": "2023-10-13T09:05:00Z"
+      },
+      {
+        "reviewId": 14,
+        "productId": 5,
+        "userId": 114,
+        "rating": 4,
+        "comment": "Good product, but the delivery packaging could be improved.",
+        "timestamp": "2023-10-14T14:35:00Z"
+      },
+      {
+        "reviewId": 15,
+        "productId": 5,
+        "userId": 115,
+        "rating": 5,
+        "comment": "Highly recommend this table. It's both stylish and durable.",
+        "timestamp": "2023-10-15T10:45:00Z"
+      },
+      {
+        "reviewId": 16,
+        "productId": 6,
+        "userId": 116,
+        "rating": 4,
+        "comment": "Nice design, but the weight is heavier than I anticipated.",
+        "timestamp": "2023-10-16T16:10:00Z"
+      },
+      {
+        "reviewId": 17,
+        "productId": 6,
+        "userId": 117,
+        "rating": 5,
+        "comment": "Exactly what I was looking for. Great buy!",
+        "timestamp": "2023-10-17T11:20:00Z"
+      },
+      {
+        "reviewId": 18,
+        "productId": 6,
+        "userId": 118,
+        "rating": 4,
+        "comment": "Good quality, but the price is a bit steep.",
+        "timestamp": "2023-10-18T17:55:00Z"
+      },
+      {
+        "reviewId": 19,
+        "productId": 7,
+        "userId": 119,
+        "rating": 5,
+        "comment": "Amazing craftsmanship. Perfect for my bedroom.",
+        "timestamp": "2023-10-19T08:30:00Z"
+      },
+      {
+        "reviewId": 20,
+        "productId": 7,
+        "userId": 120,
+        "rating": 4,
+        "comment": "Looks great, but one of the legs arrived slightly damaged.",
+        "timestamp": "2023-10-20T13:40:00Z"
+      },
+      {
+        "reviewId": 21,
+        "productId": 7,
+        "userId": 121,
+        "rating": 5,
+        "comment": "Very pleased with the purchase. Fast shipping too!",
+        "timestamp": "2023-10-21T18:15:00Z"
+      },
+      {
+        "reviewId": 22,
+        "productId": 8,
+        "userId": 122,
+        "rating": 4,
+        "comment": "Good product overall, but the assembly tools were missing.",
+        "timestamp": "2023-10-22T10:50:00Z"
+      },
+      {
+        "reviewId": 23,
+        "productId": 8,
+        "userId": 123,
+        "rating": 5,
+        "comment": "Love the sustainable oak material. Feels very premium.",
+        "timestamp": "2023-10-23T15:25:00Z"
+      },
+      {
+        "reviewId": 24,
+        "productId": 8,
+        "userId": 124,
+        "rating": 4,
+        "comment": "Nice table, but the dimensions are slightly off from the description.",
+        "timestamp": "2023-10-24T19:40:00Z"
+      },
+      {
+        "reviewId": 25,
+        "productId": 9,
+        "userId": 125,
+        "rating": 5,
+        "comment": "Perfect for small spaces. Looks elegant and modern.",
+        "timestamp": "2023-10-25T09:10:00Z"
+      },
+      {
+        "reviewId": 26,
+        "productId": 9,
+        "userId": 126,
+        "rating": 4,
+        "comment": "Good quality, but the edges feel a bit sharp.",
+        "timestamp": "2023-10-26T14:30:00Z"
+      },
+      {
+        "reviewId": 27,
+        "productId": 9,
+        "userId": 127,
+        "rating": 5,
+        "comment": "Very happy with the purchase. Would buy again!",
+        "timestamp": "2023-10-27T17:50:00Z"
+      },
+      {
+        "reviewId": 28,
+        "productId": 10,
+        "userId": 128,
+        "rating": 4,
+        "comment": "Nice design, but the wax finish chips easily.",
+        "timestamp": "2023-10-28T11:45:00Z"
+      },
+      {
+        "reviewId": 29,
+        "productId": 10,
+        "userId": 129,
+        "rating": 5,
+        "comment": "Stunning table. Adds a lot of character to my room.",
+        "timestamp": "2023-10-29T16:20:00Z"
+      },
+      {
+        "reviewId": 30,
+        "productId": 10,
+        "userId": 130,
+        "rating": 4,
+        "comment": "Good value, but the assembly instructions need improvement.",
+        "timestamp": "2023-10-30T19:10:00Z"
+      }
+    ]
+  }
