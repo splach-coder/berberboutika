@@ -2,81 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { FaLongArrowAltRight, FaRegClock, FaRegComment, FaRegBookmark, FaEye } from 'react-icons/fa';
 
 const CreativeBlogGrid = () => {  
-  // Sample blog data - in a real app, this would come from an API
-  const blogPosts = [
-    {
-      id: 1,
-      title: "The Art of Sustainable Design in Modern Furniture",
-      excerpt: "Exploring how eco-friendly materials and processes are shaping the future of furniture design without compromising on style or comfort.",
-      category: "Design",
-      readTime: 5,
-      comments: 12,
-      views: 1240,
-      image: "/images/slider/slider3.jpg",
-      date: "Mar 10, 2025",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Minimalist Home Decor Trends for 2025",
-      excerpt: "A look at how less is becoming more in home design, with clean lines and thoughtful accents taking center stage.",
-      category: "Trends",
-      readTime: 4,
-      comments: 8,
-      views: 890,
-      image: "/api/placeholder/600/400",
-      date: "Mar 5, 2025"
-    },
-    {
-      id: 3,
-      title: "Handcrafted vs Mass-Produced: Quality Comparison",
-      excerpt: "An in-depth analysis of the differences between artisanal furniture and factory-made pieces, considering durability, aesthetics, and value.",
-      category: "Craftsmanship",
-      readTime: 7,
-      comments: 23,
-      views: 1560,
-      image: "/api/placeholder/600/400",
-      date: "Feb 28, 2025"
-    },
-    {
-      id: 4,
-      title: "The Psychology of Color in Living Spaces",
-      excerpt: "How your color choices affect mood, productivity, and overall wellbeing within your home environment.",
-      category: "Psychology",
-      readTime: 6,
-      comments: 15,
-      views: 1320,
-      image: "/api/placeholder/600/400",
-      date: "Feb 20, 2025"
-    },
-    {
-      id: 5,
-      title: "Smart Furniture: The Connected Home Revolution",
-      excerpt: "Discover how technology integration is transforming ordinary furniture into intelligent components of the modern smart home.",
-      category: "Technology",
-      readTime: 5,
-      comments: 9,
-      views: 1100,
-      image: "/api/placeholder/600/400",
-      date: "Feb 15, 2025"
-    },
-    {
-      id: 6,
-      title: "Materials Guide: Choosing the Right Wood for Your Furniture",
-      excerpt: "A comprehensive overview of different wood types, their characteristics, and ideal applications in furniture making.",
-      category: "Materials",
-      readTime: 8,
-      comments: 17,
-      views: 980,
-      image: "/api/placeholder/600/400",
-      date: "Feb 8, 2025"
-    }
-  ];
-
-  // State for filtering and animation
+  const [blogPosts, setBlogPosts] = useState([]);
   const [filter, setFilter] = useState('all');
   const [hoveredCard, setHoveredCard] = useState(null);
   const [inView, setInView] = useState({});
+
+  // Fetch blogs data
+  useEffect(() => {
+    fetch("/src/data/blogs.json")
+      .then((response) => response.json())
+      .then((data) => {
+        setBlogPosts(data.blogs); 
+      })
+      .catch((error) => console.error("Error fetching blogs:", error));
+  }, []);
 
   // Categories from blog posts
   const categories = ['all', ...new Set(blogPosts.map(post => post.category.toLowerCase()))];
@@ -84,7 +23,6 @@ const CreativeBlogGrid = () => {
   // Simulate staggered reveal animation on component mount
   useEffect(() => {
     const timer = setTimeout(() => {
-      const newInView = {};
       blogPosts.forEach((post, index) => {
         setTimeout(() => {
           setInView(prev => ({ ...prev, [post.id]: true }));
@@ -93,7 +31,7 @@ const CreativeBlogGrid = () => {
     }, 300);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [blogPosts]);
 
   // Filter posts based on selected category
   const filteredPosts = filter === 'all' 
@@ -145,14 +83,14 @@ const CreativeBlogGrid = () => {
                   {post.category}
                 </span>
                 <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">{post.title}</h3>
-                <p className="text-gray-600 mb-6">{post.excerpt}</p>
+                <p className="text-gray-600 mb-6">{post.shortDescription}</p>
                 <div className="flex items-center text-sm text-gray-500 mb-6">
                   <span className="flex items-center">
                     <FaRegClock className="mr-1" />
-                    {post.readTime} min read
+                    {post.dateOfRelease}
                   </span>
                   <span className="mx-3">•</span>
-                  <span>{post.date}</span>
+                  <span>{post.views} views</span>
                 </div>
                 <a 
                   href={`/blog/${post.id}`} 
@@ -164,7 +102,7 @@ const CreativeBlogGrid = () => {
               </div>
               <div className="order-1 md:order-2 h-64 md:h-auto">
                 <img 
-                  src={post.image} 
+                  src={post.img} 
                   alt={post.title}
                   className="w-full h-full object-cover"
                 />
@@ -176,7 +114,7 @@ const CreativeBlogGrid = () => {
                 </span>
                 <span className="flex items-center bg-white bg-opacity-80 px-2 py-1 rounded-full text-xs text-gray-700">
                   <FaRegComment className="mr-1" />
-                  {post.comments}
+                  {post.likesCount} likes
                 </span>
               </div>
             </div>
@@ -202,7 +140,7 @@ const CreativeBlogGrid = () => {
               {/* Image Container */}
               <div className="relative h-56 overflow-hidden">
                 <img
-                  src={post.image}
+                  src={post.img}
                   alt={post.title}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
@@ -215,11 +153,11 @@ const CreativeBlogGrid = () => {
                 <div className="absolute bottom-4 left-4 flex space-x-2 text-white text-xs">
                   <span className="flex items-center">
                     <FaRegClock className="mr-1" />
-                    {post.readTime} min
+                    {post.dateOfRelease}
                   </span>
                   <span className="flex items-center">
                     <FaRegComment className="mr-1" />
-                    {post.comments}
+                    {post.likesCount} likes
                   </span>
                 </div>
                 <button className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white bg-opacity-80 flex items-center justify-center text-gray-600 hover:text-primary-light transition-colors duration-300">
@@ -233,10 +171,10 @@ const CreativeBlogGrid = () => {
                   {post.title}
                 </h3>
                 <p className="text-gray-600 text-sm line-clamp-2">
-                  {post.excerpt}
+                  {post.shortDescription}
                 </p>
                 <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
-                  <span className="text-sm text-gray-500">{post.date}</span>
+                  <span className="text-sm text-gray-500">{post.dateOfRelease}</span>
                   <a 
                     href={`/blog/${post.id}`} 
                     className="inline-flex items-center text-primary-light text-sm font-medium opacity-0 transform translate-x-8 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
