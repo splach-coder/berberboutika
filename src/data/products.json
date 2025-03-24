@@ -1,349 +1,374 @@
 [
-    {
-      "id": 1,
-      "name": "Handcrafted Wooden Side Table",
-      "description": "A beautiful handcrafted wooden side table made from sustainable oak. Perfect for any living room or bedroom decor.",
-      "price": 129.99,
-      "discountPrice": 99.99,
-      "currency": "$",
-      "rating": 4.8,
-      "reviewCount": 124,
-      "stock": 7,
-      "sku": "WOOD-TABLE-001",
-      "category": "Furniture",
-      "tags": ["handmade", "sustainable", "oak", "furniture"],
-      "images": ["/images/products/12.jpeg", "/images/products/10.jpeg", "/images/products/14.jpeg", "/images/products/13.jpeg"],
-      "specifications": [
-        { "name": "Dimensions", "value": "H: 24 x W: 18 x D: 18" },
-        { "name": "Weight", "value": "15 lbs" },
-        { "name": "Material", "value": "Solid Oak" },
-        { "name": "Finish", "value": "Natural Wax" },
-        { "name": "Assembly", "value": "Minimal assembly required" }
-      ],
-      "sellerInfo": {
-        "name": "BerBerBoutika",
-        "rating": 5,
-        "responseTime": "Within 24 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": true,
-        "estimatedDelivery": "3-5 business days",
-        "returns": "30-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 42
+  {
+    "id": 1,
+    "name": "Handcrafted Wooden Side Table",
+    "description": "A beautiful handcrafted wooden side table made from sustainable oak. Perfect for any living room or bedroom decor.",
+    "price": 129.99,
+    "discountPrice": 99.99,
+    "currency": "$",
+    "rating": 4.8,
+    "reviewCount": 124,
+    "stock": 7,
+    "sku": "WOOD-TABLE-001",
+    "category": "Furniture",
+    "tags": ["handmade", "sustainable", "oak", "furniture"],
+    "images": [
+      "/images/products/12.jpeg",
+      "/images/products/10.jpeg",
+      "/images/products/14.jpeg",
+      "/images/products/13.jpeg"
+    ],
+    "specifications": [
+      { "name": "Dimensions", "value": "H: 24 x W: 18 x D: 18" },
+      { "name": "Weight", "value": "15 lbs" },
+      { "name": "Material", "value": "Solid Oak" },
+      { "name": "Finish", "value": "Natural Wax" },
+      { "name": "Assembly", "value": "Minimal assembly required" }
+    ],
+    "sellerInfo": {
+      "name": "BerBerBoutika",
+      "rating": 5,
+      "responseTime": "Within 24 hours",
+      "isVerified": true
     },
-    {
-      "id": 2,
-      "name": "Vintage Leather Armchair",
-      "description": "A luxurious vintage-style armchair crafted with genuine leather and solid walnut frame. Adds elegance to any living space.",
-      "price": 349.99,
-      "discountPrice": 299.99,
-      "currency": "$",
-      "rating": 4.7,
-      "reviewCount": 89,
-      "stock": 12,
-      "sku": "LEATHER-CHAIR-002",
-      "category": "Furniture",
-      "tags": ["vintage", "leather", "walnut", "luxury"],
-      "images": ["/images/products/5.jpeg", "/images/products/3.jpeg"],
-      "specifications": [
-        { "name": "Dimensions", "value": "H: 32 x W: 28 x D: 30" },
-        { "name": "Weight", "value": "25 lbs" },
-        { "name": "Material", "value": "Genuine Leather, Walnut" },
-        { "name": "Finish", "value": "Hand-polished" },
-        { "name": "Assembly", "value": "Fully assembled" }
-      ],
-      "sellerInfo": {
-        "name": "LuxuryLiving",
-        "rating": 4.9,
-        "responseTime": "Within 12 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": true,
-        "estimatedDelivery": "5-7 business days",
-        "returns": "30-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 56
+    "shippingInfo": {
+      "freeShipping": true,
+      "estimatedDelivery": "3-5 business days",
+      "returns": "30-day returns"
     },
-    {
-      "id": 3,
-      "name": "Minimalist Ceramic Vase",
-      "description": "A sleek, hand-thrown ceramic vase perfect for modern interiors. Available in matte white and black finishes.",
-      "price": 49.99,
-      "discountPrice": 39.99,
-      "currency": "$",
-      "rating": 4.6,
-      "reviewCount": 67,
-      "stock": 25,
-      "sku": "CERAMIC-VASE-003",
-      "category": "Home Decor",
-      "tags": ["minimalist", "ceramic", "handmade", "modern"],
-      "images": ["/images/products/7.jpeg", "/images/products/9.jpeg"],
-      "specifications": [
-        { "name": "Dimensions", "value": "H: 12 x W: 6 x D: 6" },
-        { "name": "Weight", "value": "3 lbs" },
-        { "name": "Material", "value": "Ceramic" },
-        { "name": "Finish", "value": "Matte" },
-        { "name": "Care", "value": "Hand wash only" }
-      ],
-      "sellerInfo": {
-        "name": "ModernNest",
-        "rating": 4.8,
-        "responseTime": "Within 24 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": false,
-        "estimatedDelivery": "2-4 business days",
-        "returns": "14-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 34
-    },
-    {
-      "id": 4,
-      "name": "Rustic Wooden Bookshelf",
-      "description": "A sturdy, rustic-style bookshelf made from reclaimed pine. Perfect for organizing books and displaying decor.",
-      "price": 199.99,
-      "discountPrice": 179.99,
-      "currency": "$",
-      "rating": 4.5,
-      "reviewCount": 102,
-      "stock": 8,
-      "sku": "WOOD-SHELF-004",
-      "category": "Furniture",
-      "tags": ["rustic", "reclaimed wood", "bookshelf", "storage"],
-      "images": ["/images/products/2.jpeg", "/images/products/6.jpeg"],
-      "specifications": [
-        { "name": "Dimensions", "value": "H: 60 x W: 36 x D: 12" },
-        { "name": "Weight", "value": "40 lbs" },
-        { "name": "Material", "value": "Reclaimed Pine" },
-        { "name": "Finish", "value": "Natural Stain" },
-        { "name": "Assembly", "value": "Some assembly required" }
-      ],
-      "sellerInfo": {
-        "name": "RusticHaven",
-        "rating": 4.7,
-        "responseTime": "Within 48 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": true,
-        "estimatedDelivery": "7-10 business days",
-        "returns": "30-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 78
-    },
-    {
-      "id": 5,
-      "name": "Bohemian Cotton Rug",
-      "description": "A vibrant, handwoven cotton rug with intricate patterns. Adds a pop of color to any room.",
-      "price": 89.99,
-      "discountPrice": 69.99,
-      "currency": "$",
+    "inStock": true,
+    "purchaseCount": 42,
+    "collection": ["new products", "kitchen essentials", "zellige and ceramics"],
+    "timestamp": "2025-02-10T09:15:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Vintage Leather Armchair",
+    "description": "A luxurious vintage-style armchair crafted with genuine leather and solid walnut frame. Adds elegance to any living space.",
+    "price": 349.99,
+    "discountPrice": 299.99,
+    "currency": "$",
+    "rating": 4.7,
+    "reviewCount": 89,
+    "stock": 12,
+    "sku": "LEATHER-CHAIR-002",
+    "category": "Furniture",
+    "tags": ["vintage", "leather", "walnut", "luxury"],
+    "images": ["/images/products/5.jpeg", "/images/products/3.jpeg"],
+    "specifications": [
+      { "name": "Dimensions", "value": "H: 32 x W: 28 x D: 30" },
+      { "name": "Weight", "value": "25 lbs" },
+      { "name": "Material", "value": "Genuine Leather, Walnut" },
+      { "name": "Finish", "value": "Hand-polished" },
+      { "name": "Assembly", "value": "Fully assembled" }
+    ],
+    "sellerInfo": {
+      "name": "LuxuryLiving",
       "rating": 4.9,
-      "reviewCount": 143,
-      "stock": 15,
-      "sku": "COTTON-RUG-005",
-      "category": "Home Decor",
-      "tags": ["bohemian", "handwoven", "cotton", "colorful"],
-      "images": ["/images/products/4.jpeg", "/images/products/8.jpeg"],
-      "specifications": [
-        { "name": "Dimensions", "value": "5 ft x 8 ft" },
-        { "name": "Weight", "value": "10 lbs" },
-        { "name": "Material", "value": "100% Cotton" },
-        { "name": "Care", "value": "Machine washable" }
-      ],
-      "sellerInfo": {
-        "name": "BohoChic",
-        "rating": 4.8,
-        "responseTime": "Within 24 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": true,
-        "estimatedDelivery": "3-5 business days",
-        "returns": "30-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 92
+      "responseTime": "Within 12 hours",
+      "isVerified": true
     },
-    {
-      "id": 6,
-      "name": "Industrial Metal Desk Lamp",
-      "description": "A sleek, adjustable desk lamp with an industrial design. Perfect for home offices or study spaces.",
-      "price": 59.99,
-      "discountPrice": 49.99,
-      "currency": "$",
+    "shippingInfo": {
+      "freeShipping": true,
+      "estimatedDelivery": "5-7 business days",
+      "returns": "30-day returns"
+    },
+    "inStock": true,
+    "purchaseCount": 56,
+    "collection": ["new products", "salon sanctuary"],
+    "timestamp": "2025-03-10T09:15:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Minimalist Ceramic Vase",
+    "description": "A sleek, hand-thrown ceramic vase perfect for modern interiors. Available in matte white and black finishes.",
+    "price": 49.99,
+    "discountPrice": 39.99,
+    "currency": "$",
+    "rating": 4.6,
+    "reviewCount": 67,
+    "stock": 25,
+    "sku": "CERAMIC-VASE-003",
+    "category": "Home Decor",
+    "tags": ["minimalist", "ceramic", "handmade", "modern"],
+    "images": ["/images/products/7.jpeg", "/images/products/9.jpeg"],
+    "specifications": [
+      { "name": "Dimensions", "value": "H: 12 x W: 6 x D: 6" },
+      { "name": "Weight", "value": "3 lbs" },
+      { "name": "Material", "value": "Ceramic" },
+      { "name": "Finish", "value": "Matte" },
+      { "name": "Care", "value": "Hand wash only" }
+    ],
+    "sellerInfo": {
+      "name": "ModernNest",
       "rating": 4.8,
-      "reviewCount": 76,
-      "stock": 20,
-      "sku": "METAL-LAMP-006",
-      "category": "Lighting",
-      "tags": ["industrial", "metal", "adjustable", "desk lamp"],
-      "images": ["/images/products/11.jpeg", "/images/products/15.jpeg"],
-      "specifications": [
-        { "name": "Dimensions", "value": "H: 18 x W: 10 x D: 10" },
-        { "name": "Weight", "value": "5 lbs" },
-        { "name": "Material", "value": "Steel, Aluminum" },
-        { "name": "Bulb", "value": "LED (included)" },
-        { "name": "Adjustability", "value": "Flexible neck" }
-      ],
-      "sellerInfo": {
-        "name": "UrbanLoft",
-        "rating": 4.9,
-        "responseTime": "Within 12 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": true,
-        "estimatedDelivery": "2-3 business days",
-        "returns": "30-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 63
+      "responseTime": "Within 24 hours",
+      "isVerified": true
     },
-    {
-      "id": 7,
-      "name": "Modern Glass Coffee Table",
-      "description": "A sleek, modern coffee table with a tempered glass top and stainless steel frame. Perfect for contemporary living rooms.",
-      "price": 249.99,
-      "discountPrice": 219.99,
-      "currency": "$",
+    "shippingInfo": {
+      "freeShipping": false,
+      "estimatedDelivery": "2-4 business days",
+      "returns": "14-day returns"
+    },
+    "inStock": true,
+    "purchaseCount": 34,
+    "collection": ["salon sanctuary", "zellige and ceramics"],
+    "timestamp": "2025-01-10T09:15:00Z"
+  },
+  {
+    "id": 4,
+    "name": "Rustic Wooden Bookshelf",
+    "description": "A sturdy, rustic-style bookshelf made from reclaimed pine. Perfect for organizing books and displaying decor.",
+    "price": 199.99,
+    "discountPrice": 179.99,
+    "currency": "$",
+    "rating": 4.5,
+    "reviewCount": 102,
+    "stock": 8,
+    "sku": "WOOD-SHELF-004",
+    "category": "Furniture",
+    "tags": ["rustic", "reclaimed wood", "bookshelf", "storage"],
+    "images": ["/images/products/2.jpeg", "/images/products/6.jpeg"],
+    "specifications": [
+      { "name": "Dimensions", "value": "H: 60 x W: 36 x D: 12" },
+      { "name": "Weight", "value": "40 lbs" },
+      { "name": "Material", "value": "Reclaimed Pine" },
+      { "name": "Finish", "value": "Natural Stain" },
+      { "name": "Assembly", "value": "Some assembly required" }
+    ],
+    "sellerInfo": {
+      "name": "RusticHaven",
       "rating": 4.7,
-      "reviewCount": 95,
-      "stock": 10,
-      "sku": "GLASS-TABLE-007",
-      "category": "Furniture",
-      "tags": ["modern", "glass", "stainless steel", "coffee table"],
-      "images": ["/images/products/1.jpeg", "/images/products/16.jpeg"],
-      "specifications": [
-        { "name": "Dimensions", "value": "H: 18 x W: 48 x D: 24" },
-        { "name": "Weight", "value": "30 lbs" },
-        { "name": "Material", "value": "Tempered Glass, Stainless Steel" },
-        { "name": "Finish", "value": "Polished" },
-        { "name": "Assembly", "value": "Minimal assembly required" }
-      ],
-      "sellerInfo": {
-        "name": "UrbanElegance",
-        "rating": 4.8,
-        "responseTime": "Within 24 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": true,
-        "estimatedDelivery": "5-7 business days",
-        "returns": "30-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 81
+      "responseTime": "Within 48 hours",
+      "isVerified": true
     },
-    {
-      "id": 8,
-      "name": "Handwoven Wicker Basket",
-      "description": "A versatile, handwoven wicker basket perfect for storage or as a decorative piece. Available in multiple sizes.",
-      "price": 29.99,
-      "discountPrice": 24.99,
-      "currency": "$",
-      "rating": 4.6,
-      "reviewCount": 58,
-      "stock": 30,
-      "sku": "WICKER-BASKET-008",
-      "category": "Home Decor",
-      "tags": ["handwoven", "wicker", "storage", "decorative"],
-      "images": ["/images/products/3.jpeg", "/images/products/7.jpeg"],
-      "specifications": [
-        { "name": "Dimensions", "value": "H: 10 x W: 15 x D: 10" },
-        { "name": "Weight", "value": "2 lbs" },
-        { "name": "Material", "value": "Natural Wicker" },
-        { "name": "Care", "value": "Wipe clean with damp cloth" }
-      ],
-      "sellerInfo": {
-        "name": "NaturalNest",
-        "rating": 4.7,
-        "responseTime": "Within 24 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": true,
-        "estimatedDelivery": "3-5 business days",
-        "returns": "30-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 47
+    "shippingInfo": {
+      "freeShipping": true,
+      "estimatedDelivery": "7-10 business days",
+      "returns": "30-day returns"
     },
-    {
-      "id": 9,
-      "name": "Velvet Upholstered Bench",
-      "description": "A plush, velvet-upholstered bench with a solid wood frame. Perfect for adding a touch of luxury to your entryway or bedroom.",
-      "price": 179.99,
-      "discountPrice": 149.99,
-      "currency": "$",
+    "inStock": true,
+    "purchaseCount": 78,
+    "collection": ["salon sanctuary", "zellige and ceramics"],
+    "timestamp": "2025-03-10T09:15:00Z"
+  },
+  {
+    "id": 5,
+    "name": "Bohemian Cotton Rug",
+    "description": "A vibrant, handwoven cotton rug with intricate patterns. Adds a pop of color to any room.",
+    "price": 89.99,
+    "discountPrice": 69.99,
+    "currency": "$",
+    "rating": 4.9,
+    "reviewCount": 143,
+    "stock": 15,
+    "sku": "COTTON-RUG-005",
+    "category": "Home Decor",
+    "tags": ["bohemian", "handwoven", "cotton", "colorful"],
+    "images": ["/images/products/4.jpeg", "/images/products/8.jpeg"],
+    "specifications": [
+      { "name": "Dimensions", "value": "5 ft x 8 ft" },
+      { "name": "Weight", "value": "10 lbs" },
+      { "name": "Material", "value": "100% Cotton" },
+      { "name": "Care", "value": "Machine washable" }
+    ],
+    "sellerInfo": {
+      "name": "BohoChic",
       "rating": 4.8,
-      "reviewCount": 112,
-      "stock": 5,
-      "sku": "VELVET-BENCH-009",
-      "category": "Furniture",
-      "tags": ["velvet", "upholstered", "luxury", "bench"],
-      "images": ["/images/products/9.jpeg", "/images/products/12.jpeg"],
-      "specifications": [
-        { "name": "Dimensions", "value": "H: 18 x W: 42 x D: 18" },
-        { "name": "Weight", "value": "20 lbs" },
-        { "name": "Material", "value": "Velvet, Solid Wood" },
-        { "name": "Finish", "value": "Brushed Gold Legs" },
-        { "name": "Assembly", "value": "Fully assembled" }
-      ],
-      "sellerInfo": {
-        "name": "LuxuryLiving",
-        "rating": 4.9,
-        "responseTime": "Within 12 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": true,
-        "estimatedDelivery": "5-7 business days",
-        "returns": "30-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 68
+      "responseTime": "Within 24 hours",
+      "isVerified": true
     },
-    {
-      "id": 10,
-      "name": "Artisanal Ceramic Dinnerware Set",
-      "description": "A stunning set of handcrafted ceramic dinnerware, including plates, bowls, and mugs. Perfect for elevating your dining experience.",
-      "price": 129.99,
-      "discountPrice": 109.99,
-      "currency": "$",
+    "shippingInfo": {
+      "freeShipping": true,
+      "estimatedDelivery": "3-5 business days",
+      "returns": "30-day returns"
+    },
+    "inStock": true,
+    "purchaseCount": 92,
+    "collection": ["salon sanctuary", "berber textiles"],
+    "timestamp": "2025-01-10T09:15:00Z"
+  },
+  {
+    "id": 6,
+    "name": "Industrial Metal Desk Lamp",
+    "description": "A sleek, adjustable desk lamp with an industrial design. Perfect for home offices or study spaces.",
+    "price": 59.99,
+    "discountPrice": 49.99,
+    "currency": "$",
+    "rating": 4.8,
+    "reviewCount": 76,
+    "stock": 20,
+    "sku": "METAL-LAMP-006",
+    "category": "Lighting",
+    "tags": ["industrial", "metal", "adjustable", "desk lamp"],
+    "images": ["/images/products/11.jpeg", "/images/products/15.jpeg"],
+    "specifications": [
+      { "name": "Dimensions", "value": "H: 18 x W: 10 x D: 10" },
+      { "name": "Weight", "value": "5 lbs" },
+      { "name": "Material", "value": "Steel, Aluminum" },
+      { "name": "Bulb", "value": "LED (included)" },
+      { "name": "Adjustability", "value": "Flexible neck" }
+    ],
+    "sellerInfo": {
+      "name": "UrbanLoft",
       "rating": 4.9,
-      "reviewCount": 134,
-      "stock": 18,
-      "sku": "CERAMIC-SET-010",
-      "category": "Kitchen & Dining",
-      "tags": ["artisanal", "ceramic", "dinnerware", "handmade"],
-      "images": ["/images/products/14.jpeg", "/images/products/13.jpeg"],
-      "specifications": [
-        { "name": "Set Includes", "value": "4 Plates, 4 Bowls, 4 Mugs" },
-        { "name": "Material", "value": "Ceramic" },
-        { "name": "Finish", "value": "Glazed" },
-        { "name": "Care", "value": "Dishwasher safe" }
-      ],
-      "sellerInfo": {
-        "name": "ArtisanCraft",
-        "rating": 4.8,
-        "responseTime": "Within 24 hours",
-        "isVerified": true
-      },
-      "shippingInfo": {
-        "freeShipping": true,
-        "estimatedDelivery": "3-5 business days",
-        "returns": "30-day returns"
-      },
-      "inStock": true,
-      "purchaseCount": 105
-    }
-  ]
+      "responseTime": "Within 12 hours",
+      "isVerified": true
+    },
+    "shippingInfo": {
+      "freeShipping": true,
+      "estimatedDelivery": "2-3 business days",
+      "returns": "30-day returns"
+    },
+    "inStock": true,
+    "purchaseCount": 63,
+    "collection": ["new products", "salon sanctuary"],
+    "timestamp": "2025-03-10T09:15:00Z"
+  },
+  {
+    "id": 7,
+    "name": "Modern Glass Coffee Table",
+    "description": "A sleek, modern coffee table with a tempered glass top and stainless steel frame. Perfect for contemporary living rooms.",
+    "price": 249.99,
+    "discountPrice": 219.99,
+    "currency": "$",
+    "rating": 4.7,
+    "reviewCount": 95,
+    "stock": 10,
+    "sku": "GLASS-TABLE-007",
+    "category": "Furniture",
+    "tags": ["modern", "glass", "stainless steel", "coffee table"],
+    "images": ["/images/products/1.jpeg", "/images/products/16.jpeg"],
+    "specifications": [
+      { "name": "Dimensions", "value": "H: 18 x W: 48 x D: 24" },
+      { "name": "Weight", "value": "30 lbs" },
+      { "name": "Material", "value": "Tempered Glass, Stainless Steel" },
+      { "name": "Finish", "value": "Polished" },
+      { "name": "Assembly", "value": "Minimal assembly required" }
+    ],
+    "sellerInfo": {
+      "name": "UrbanElegance",
+      "rating": 4.8,
+      "responseTime": "Within 24 hours",
+      "isVerified": true
+    },
+    "shippingInfo": {
+      "freeShipping": true,
+      "estimatedDelivery": "5-7 business days",
+      "returns": "30-day returns"
+    },
+    "inStock": true,
+    "purchaseCount": 81,
+    "collection": ["new products", "kitchen essentials"],
+    "timestamp": "2025-03-10T09:15:00Z"
+  },
+  {
+    "id": 8,
+    "name": "Handwoven Wicker Basket",
+    "description": "A versatile, handwoven wicker basket perfect for storage or as a decorative piece. Available in multiple sizes.",
+    "price": 29.99,
+    "discountPrice": 24.99,
+    "currency": "$",
+    "rating": 4.6,
+    "reviewCount": 58,
+    "stock": 30,
+    "sku": "WICKER-BASKET-008",
+    "category": "Home Decor",
+    "tags": ["handwoven", "wicker", "storage", "decorative"],
+    "images": ["/images/products/3.jpeg", "/images/products/7.jpeg"],
+    "specifications": [
+      { "name": "Dimensions", "value": "H: 10 x W: 15 x D: 10" },
+      { "name": "Weight", "value": "2 lbs" },
+      { "name": "Material", "value": "Natural Wicker" },
+      { "name": "Care", "value": "Wipe clean with damp cloth" }
+    ],
+    "sellerInfo": {
+      "name": "NaturalNest",
+      "rating": 4.7,
+      "responseTime": "Within 24 hours",
+      "isVerified": true
+    },
+    "shippingInfo": {
+      "freeShipping": true,
+      "estimatedDelivery": "3-5 business days",
+      "returns": "30-day returns"
+    },
+    "inStock": true,
+    "purchaseCount": 47,
+    "collection": ["kitchen essentials"],
+    "timestamp": "2025-02-10T09:15:00Z"
+  },
+  {
+    "id": 9,
+    "name": "Velvet Upholstered Bench",
+    "description": "A plush, velvet-upholstered bench with a solid wood frame. Perfect for adding a touch of luxury to your entryway or bedroom.",
+    "price": 179.99,
+    "discountPrice": 149.99,
+    "currency": "$",
+    "rating": 4.8,
+    "reviewCount": 112,
+    "stock": 5,
+    "sku": "VELVET-BENCH-009",
+    "category": "Furniture",
+    "tags": ["velvet", "upholstered", "luxury", "bench"],
+    "images": ["/images/products/9.jpeg", "/images/products/12.jpeg"],
+    "specifications": [
+      { "name": "Dimensions", "value": "H: 18 x W: 42 x D: 18" },
+      { "name": "Weight", "value": "20 lbs" },
+      { "name": "Material", "value": "Velvet, Solid Wood" },
+      { "name": "Finish", "value": "Brushed Gold Legs" },
+      { "name": "Assembly", "value": "Fully assembled" }
+    ],
+    "sellerInfo": {
+      "name": "LuxuryLiving",
+      "rating": 4.9,
+      "responseTime": "Within 12 hours",
+      "isVerified": true
+    },
+    "shippingInfo": {
+      "freeShipping": true,
+      "estimatedDelivery": "5-7 business days",
+      "returns": "30-day returns"
+    },
+    "inStock": true,
+    "purchaseCount": 68,
+    "collection": ["new products", "salon sanctuary"],
+    "timestamp": "2025-03-10T09:15:00Z"
+  },
+  {
+    "id": 10,
+    "name": "Artisanal Ceramic Dinnerware Set",
+    "description": "A stunning set of handcrafted ceramic dinnerware, including plates, bowls, and mugs. Perfect for elevating your dining experience.",
+    "price": 129.99,
+    "discountPrice": 109.99,
+    "currency": "$",
+    "rating": 4.9,
+    "reviewCount": 134,
+    "stock": 18,
+    "sku": "CERAMIC-SET-010",
+    "category": "Kitchen & Dining",
+    "tags": ["artisanal", "ceramic", "dinnerware", "handmade"],
+    "images": ["/images/products/14.jpeg", "/images/products/13.jpeg"],
+    "specifications": [
+      { "name": "Set Includes", "value": "4 Plates, 4 Bowls, 4 Mugs" },
+      { "name": "Material", "value": "Ceramic" },
+      { "name": "Finish", "value": "Glazed" },
+      { "name": "Care", "value": "Dishwasher safe" }
+    ],
+    "sellerInfo": {
+      "name": "ArtisanCraft",
+      "rating": 4.8,
+      "responseTime": "Within 24 hours",
+      "isVerified": true
+    },
+    "shippingInfo": {
+      "freeShipping": true,
+      "estimatedDelivery": "3-5 business days",
+      "returns": "30-day returns"
+    },
+    "inStock": true,
+    "purchaseCount": 105,
+    "collection": ["new products", "zellige and ceramics"],
+    "timestamp": "2025-03-10T09:15:00Z"
+  }
+]

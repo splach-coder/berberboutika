@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaFacebook, FaTiktok, FaInstagram, FaPinterest } from 'react-icons/fa';
 
 const SocialMediaFooter = () => {
   return (
@@ -17,7 +17,12 @@ const SocialMediaFooter = () => {
         </a>
         <a href="#" className="hover:text-indigo-200 transition duration-300">
           <span className="w-8 h-8 rounded-full bg-primary-light flex items-center justify-center">
-            <FaYoutube className="text-primary-dark" />
+            <FaTiktok className="text-primary-dark" />
+          </span>
+        </a>
+        <a href="#" className="hover:text-indigo-200 transition duration-300">
+          <span className="w-8 h-8 rounded-full bg-primary-light flex items-center justify-center">
+            <FaPinterest className="text-primary-dark" />
           </span>
         </a>
       </div>

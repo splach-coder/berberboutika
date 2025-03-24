@@ -108,10 +108,8 @@ const MainSlider = () => {
               style={{
                 animation:
                   isAnimating && currentSlide === index
-                    ? "slideUp 0.8s ease-out"
+                    ? "slideUp 0.8s ease-out 0.2s forwards"
                     : "none",
-                animationFillMode: "forwards",
-                animationDelay: "0.2s",
               }}
             >
               <h2 className="text-4xl md:text-6xl font-light mb-2">

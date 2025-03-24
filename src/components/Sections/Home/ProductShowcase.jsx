@@ -30,7 +30,18 @@ const ProductShowcaseSlider = () => {
           throw new Error("Failed to fetch products data");
         }
         const data = await response.json();
-        setProducts(data);
+
+        // Calculate the date 40 days ago
+        const fortyDaysAgo = new Date();
+        fortyDaysAgo.setDate(fortyDaysAgo.getDate() - 40);
+
+        // Filter products to include only those with a timestamp in the last 40 days
+        const filteredProducts = data.filter(product => {
+          const productDate = new Date(product.timestamp);
+          return productDate >= fortyDaysAgo;
+        });
+
+        setProducts(filteredProducts);
       } catch (error) {
         console.error("Error loading products:", error);
         // Set fallback empty array in case of error
@@ -85,7 +96,7 @@ const ProductShowcaseSlider = () => {
       {/* Slider navigation buttons - only show if there are products */}
       {products.length > 0 && (
         <>
-          <div className="absolute top-1/2 left-0 transform -translate-y-12 z-10">
+          <div className="absolute left-0 transform -translate-y-12 z-10" style={{top: "60%"}}>
             <button
               onClick={scrollLeft}
               className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
@@ -95,7 +106,7 @@ const ProductShowcaseSlider = () => {
             </button>
           </div>
 
-          <div className="absolute top-1/2 right-0 transform -translate-y-12 z-10">
+          <div className="absolute right-0 transform -translate-y-12 z-10" style={{top: "60%"}}>
             <button
               onClick={scrollRight}
               className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
@@ -152,7 +163,7 @@ const ProductShowcaseSlider = () => {
                   {product.name}
                 </h3>
                 <p className="text-gray-800 font-semibold mt-auto">
-                  {product.price}
+                  {product.price} DH
                 </p>
               </div>
             </div>

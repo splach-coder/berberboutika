@@ -15,7 +15,7 @@ const Quote = () => {
       </h2>
       
       {/* Delivery message */}
-      <p className="text-amber-700 font-medium">
+      <p className="text-primary-dark font-medium">
         Nous livrons partout au Maroc gratuitement.
       </p>
     </div>

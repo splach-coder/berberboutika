@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaLongArrowAltRight, FaRegClock, FaRegComment, FaRegBookmark, FaEye } from 'react-icons/fa';
 
-const CreativeBlogGrid = () => {
+const CreativeBlogGrid = () => {  
   // Sample blog data - in a real app, this would come from an API
   const blogPosts = [
     {

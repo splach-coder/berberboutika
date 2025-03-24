@@ -404,25 +404,6 @@ const ProductDetail = () => {
               {activeTab === "description" && (
                 <div className="prose max-w-none text-gray-700">
                   <p>{product.description}</p>
-                  <p>
-                    This handcrafted wooden side table adds a touch of warmth
-                    and natural beauty to any space. Each piece is meticulously
-                    crafted by skilled artisans, ensuring unique character and
-                    exceptional quality.
-                  </p>
-                  <p>
-                    The sustainable oak used in this piece is sourced from
-                    responsibly managed forests, making it an environmentally
-                    conscious choice for your home. The natural wax finish not
-                    only enhances the wood's natural grain but also provides
-                    protection while maintaining its organic appeal.
-                  </p>
-                  <p>
-                    Versatile in design, this side table works beautifully in
-                    both traditional and contemporary settings. It's perfect as
-                    a nightstand, end table, or accent piece in your living
-                    room, bedroom, or office.
-                  </p>
                 </div>
               )}
 
@@ -645,7 +626,7 @@ const ProductDetail = () => {
                       </p>
                     </div>
 
-                    <button className="text-primary-light hover:text-indigo-700 font-medium text-sm flex items-center">
+                    <button className="text-primary-dark hover:text-button-darkHover font-medium text-sm flex items-center">
                       See all {product.reviewCount} reviews
                       <FaChevronRight className="ml-1" size={12} />
                     </button>
@@ -662,7 +643,7 @@ const ProductDetail = () => {
         <div className="flex items-center mb-4 sm:mb-0">
           <FaTag className="text-gray-500 mr-2" />
           <div className="flex flex-wrap gap-2">
-            {product.tags.map((tag, index) => (
+            {product.collection.map((tag, index) => (
               <span
                 key={index}
                 className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full hover:bg-gray-200 cursor-pointer"
@@ -717,43 +698,6 @@ const ProductDetail = () => {
                   <div className="flex items-center">
                     <FaStar className="text-yellow-500" size={12} />
                     <span className="text-xs text-gray-500 ml-1">4.7</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Recently Viewed */}
-      <div className="mt-12 pb-8">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">
-          Recently Viewed
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {[1, 2, 3, 4].map((item) => (
-            <div
-              key={item}
-              className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
-            >
-              <div className="aspect-w-1 aspect-h-1 bg-gray-100">
-                <img
-                  src="/api/placeholder/300/300"
-                  alt="Recently viewed product"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-sm font-medium text-gray-800 truncate">
-                  Wooden Dining Chair
-                </h3>
-                <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm font-bold text-gray-800">
-                    $59.99
-                  </span>
-                  <div className="flex items-center">
-                    <FaStar className="text-yellow-500" size={12} />
-                    <span className="text-xs text-gray-500 ml-1">4.5</span>
                   </div>
                 </div>
               </div>

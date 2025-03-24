@@ -42,35 +42,16 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
   };
 
   const navigationLinks = [
-    { name: 'NEW PRODUCTS', href: '#' },
-    { name: 'MIX AND MATCH OF THE MONTH', href: '#' },
-    { name: 'DECORATION', href: '#' },
+    { name: 'New Products', href: '/products?collection=new products' },
+    { name: 'Zellige & Ceramics', href: '/products?collection=zellige and ceramics' },
+    { name: 'Berber Textiles', href: '/products?collection=berber textiles' },
     {
-      name: 'HOME FRAGRANCES',
-      href: '#',
-      subcategories: [
-        { name: 'Scented Candles', href: '#' },
-        { name: 'Diffusers and Fragrance Oils', href: '#' },
-        // Add other subcategories as needed
-      ],
+      name: 'Kitchen Essentials',
+      href: '/products?collection=kitchen essentials'
     },
     {
-      name: 'LIFESTYLE',
-      href: '#',
-      subcategories: [
-        { name: 'Jewelry', href: '#' },
-        { name: 'Bags and Accessories', href: '#' },
-        // Add other subcategories as needed
-      ],
-    },
-    {
-      name: 'INSPIRATIONS',
-      href: '#',
-      subcategories: [
-        { name: 'Our Table Suggestions', href: '#' },
-        { name: 'Gifts', href: '#' },
-        // Add other subcategories as needed
-      ],
+      name: 'Salon Sanctuary',
+      href: '/products?collection=salon sanctuary'
     },
   ];
 
@@ -120,10 +101,10 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
           <div className={`${(isScrolled || isMobile) ? 'mx-auto' : ''}`}>
             <a href="/"> 
               <img
-                src="/images/logos/2.png"
+                src="/images/logos/logo.png"
                 alt="CHABI CHIC"
                 className={`inline-block transition-all duration-300 ${
-                  isScrolled ? 'h-12' : (isMobile ? 'h-14' : 'h-20')
+                  isScrolled ? 'h-16' : (isMobile ? 'h-16' : 'h-24')
                 }`}
               />
             </a>
@@ -135,7 +116,7 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
               <ul className={`flex flex-wrap justify-center space-x-4 text-sm font-medium ${textColor}`}>
                 {navigationLinks.map((link) => (
                   <li key={link.name} className="relative group">
-                    <a href={link.href} className="hover:text-gray-500 px-2 py-1 flex items-center">
+                    <a href={link.href} className="hover:text-gray-500 px-2 py-1 flex items-center text-lg">
                       {link.name}
                       {link.subcategories && (
                         <svg
