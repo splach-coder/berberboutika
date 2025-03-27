@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { LuSearch, LuX, LuShoppingBag } from "react-icons/lu";
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const SearchSidebar = ({ searchTerm, isOpen, toggleSidebar, setSearchTerm, setIsOpen }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const sidebarRef = useRef(null);
   const searchInputRef = useRef(null);
   const navigate = useNavigate();
@@ -14,24 +14,25 @@ const SearchSidebar = ({ searchTerm, isOpen, toggleSidebar, setSearchTerm, setIs
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true);
         const response = await fetch('../../src/data/products.json');
-        console.log(response)
         const data = await response.json();
         setProducts(data);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching products:', error);
-        setLoading(false);
       }
     };
 
-    fetchProducts();
-  }, []);
+    if (isOpen) {
+      fetchProducts();
+    }
+  }, [isOpen]);
 
   // Filter products based on search term
   useEffect(() => {
-    if (!products.length) return;
+    if (!products.length || !searchTerm) {
+      setFilteredProducts([]);
+      return;
+    }
     
     const filtered = products.filter(product => 
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -45,7 +46,7 @@ const SearchSidebar = ({ searchTerm, isOpen, toggleSidebar, setSearchTerm, setIs
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isOpen) {
-        setIsOpen(false); // Use the prop here
+        setIsOpen(false);
       }
     };
   
@@ -53,7 +54,7 @@ const SearchSidebar = ({ searchTerm, isOpen, toggleSidebar, setSearchTerm, setIs
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen, setIsOpen]); // Add setIsOpen to the dependency array
+  }, [isOpen, setIsOpen]);
 
   // Focus search input when sidebar opens
   useEffect(() => {
@@ -65,8 +66,22 @@ const SearchSidebar = ({ searchTerm, isOpen, toggleSidebar, setSearchTerm, setIs
   }, [isOpen]);
 
   const handleViewAllResults = () => {
-    navigate('/products');
+    navigate('/search', { state: { searchTerm: searchTerm } });
     setIsOpen(false);
+  };
+
+  // Product list animation variants
+  const productVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (index) => ({
+      opacity: 1, 
+      y: 0,
+      transition: {
+        delay: index * 0.1, // Staggered animation
+        duration: 0.3
+      }
+    }),
+    exit: { opacity: 0, y: 20 }
   };
 
   return (
@@ -108,7 +123,7 @@ const SearchSidebar = ({ searchTerm, isOpen, toggleSidebar, setSearchTerm, setIs
                 ref={searchInputRef}
                 type="text"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)} // Use the prop here
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full p-3 pl-10 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
                 placeholder="Search products..."
               />
@@ -117,28 +132,50 @@ const SearchSidebar = ({ searchTerm, isOpen, toggleSidebar, setSearchTerm, setIs
 
           {/* Products List */}
           <div className="flex-1 overflow-y-auto p-4">
-            {loading ? (
-              <p className="text-center py-8">Loading products...</p>
-            ) : searchTerm && filteredProducts.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">No products found</p>
+            {!searchTerm ? (
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-gray-500 text-center py-8"
+              >
+                Start typing to search for products
+              </motion.p>
+            ) : filteredProducts.length === 0 ? (
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-gray-500 text-center py-8"
+              >
+                No products found
+              </motion.p>
             ) : (
               <div className="space-y-6">
-                {filteredProducts.slice(0, 4).map((product) => (
-                  <div key={product.id} className="flex gap-4">
-                    <div className="w-24 h-24 bg-gray-100 rounded-md overflow-hidden">
-                      <img 
-                        src={product.images[0]} 
-                        alt={product.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-medium leading-tight mb-1">{product.name}</h4>
-                      <p className="text-sm text-gray-500 mb-2">{product.category}</p>
-                      <p className="font-medium">{product.price}</p>
-                    </div>
-                  </div>
-                ))}
+                <AnimatePresence>
+                  {filteredProducts.slice(0, 4).map((product, index) => (
+                    <motion.div 
+                      key={product.id}
+                      custom={index}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      variants={productVariants}
+                      className="flex gap-4"
+                    >
+                      <div className="w-24 h-24 bg-gray-100 rounded-md overflow-hidden">
+                        <img 
+                          src={product.images[0]} 
+                          alt={product.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-medium leading-tight mb-1">{product.name}</h4>
+                        <p className="text-sm text-gray-500 mb-2">{product.category}</p>
+                        <p className="font-medium">{product.price}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
               </div>
             )}
           </div>

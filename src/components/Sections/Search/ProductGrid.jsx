@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, Filter, Search } from "lucide-react";
 
 // Custom Slider Component
@@ -81,9 +83,10 @@ const CustomSlider = ({ defaultValue, max, step, onValueChange }) => {
 };
 
 const ProductGrid = () => {
+  const location = useLocation();
+  
   // State for products and filters
   const [products, setProducts] = useState([]);
-  const [sampleProducts, setSampleProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -97,22 +100,22 @@ const ProductGrid = () => {
   const productsPerPage = 8;
   const sortDropdownRef = useRef(null);
 
+  // Check for initial search term from navigation state
+  useEffect(() => {
+    const state = location.state;
+    if (state && state.searchTerm) {
+      setSearchQuery(state.searchTerm);
+    }
+  }, [location.state]);
+
   // Fetch products data
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // In a real implementation, you would fetch from your JSON file
-        // For this demo, we'll use sample data
-        useEffect(() => {
-            // Fetch the products data from the JSON file
-            fetch('/src/data/products.json')
-              .then((response) => response.json())
-              .then((data) => setSampleProducts(data))
-              .catch((error) => console.error('Error fetching products:', error));
-          }, []);
-
-        setProducts(sampleProducts);
-        setFilteredProducts(sampleProducts);
+        const response = await fetch('/src/data/products.json');
+        const data = await response.json();
+        setProducts(data);
+        setFilteredProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -121,26 +124,33 @@ const ProductGrid = () => {
     fetchProducts();
   }, []);
 
-  // Filter and sort products
-  useEffect(() => {
-    let result = [...products];
+// Filter and sort products
+useEffect(() => {
+  let result = [...products];
 
-    // Apply search filter
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(
-        (product) =>
-          product.name.toLowerCase().includes(query) ||
-          product.category.toLowerCase().includes(query) ||
-          product.description.toLowerCase().includes(query)
-      );
-    }
+  // Apply search filter
+  if (searchQuery) {
+    const query = searchQuery.toLowerCase();
+    result = result.filter(
+      (product) =>
+        product.name.toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query) ||
+        product.description.toLowerCase().includes(query)
+    );
+  }
 
-    // Apply price range filter
-    result = result.filter((product) => {
-      const price = parseFloat(product.price.replace(/[^0-9.]/g, ""));
+  // Apply price range filter
+  result = result.filter((product) => {
+    try {
+      // Ensure price is treated as a string and has proper format
+      const priceString = product.price?.toString() || "0";
+      const price = parseFloat(priceString.replace(/[^0-9.]/g, ""));
       return price >= priceRange[0] && price <= priceRange[1];
-    });
+    } catch (error) {
+      console.error("Error processing product price:", product, error);
+      return false; // Exclude products with invalid price format
+    }
+  });
 
     // Apply in-stock filter
     if (showInStockOnly) {
@@ -203,10 +213,24 @@ const ProductGrid = () => {
     };
   }, []);
 
+  // Product animation variants
+  const productVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (index) => ({
+      opacity: 1, 
+      y: 0,
+      transition: {
+        delay: index * 0.1,
+        duration: 0.3
+      }
+    }),
+    exit: { opacity: 0, y: 20 }
+  };
+
   return (
     <>
       {/* Header section with search, filter, and sort */}
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8 sm:mt-12 lg:mt-36">
         <div className="relative w-full md:w-1/3 mb-4 md:mb-0">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
@@ -214,13 +238,13 @@ const ProductGrid = () => {
           <input
             type="text"
             placeholder="Search products..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border bg-white border-gray-300 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 text-black">
           <button
             className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none hover:bg-gray-50"
             onClick={() => setFilterPanelOpen(true)}
@@ -297,75 +321,97 @@ const ProductGrid = () => {
       </div>
 
       {/* Products grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {currentProducts.map((product) => (
-          <div
-            key={product.id}
-            className="relative group"
-            onMouseEnter={() => setHoveredProduct(product.id)}
-            onMouseLeave={() => setHoveredProduct(null)}
+      <AnimatePresence>
+        {currentProducts.length === 0 ? (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="text-center text-gray-500 py-10"
           >
-            {/* Product image with hover effect */}
-            <div className="relative h-80 overflow-hidden">
-              <img
-                src={
-                  hoveredProduct === product.id
-                    ? product.images[1]
-                    : product.images[0]
-                }
-                alt={product.name}
-                className="w-full h-full object-cover transition-all duration-500"
-              />
-
-              {/* Out of stock label */}
-              {!product.inStock && (
-                <div className="absolute top-0 right-0 bg-black text-white text-xs font-bold px-3 py-1 m-2">
-                  OUT OF STOCK
-                </div>
-              )}
-
-              {/* Black overlay with description - appears on hover */}
-              <div
-                className={`absolute bottom-0 left-0 right-0 h-1/5 bg-black bg-opacity-70 flex items-center px-4 text-white transform transition-all duration-300 ease-out ${
-                  hoveredProduct === product.id
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-full opacity-0"
-                }`}
-              >
-                <p className="text-sm line-clamp-2">{product.description}</p>
-              </div>
-
-              {/* Quick view button - appears on hover */}
-              <div
-                className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
-                  hoveredProduct === product.id ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <button
-                  className="bg-white text-black px-4 py-2 text-sm font-medium hover:bg-gray-100 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    openQuickView(product);
-                  }}
+            {searchQuery 
+              ? "No products found matching your search" 
+              : "No products available"}
+          </motion.div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <AnimatePresence>
+              {currentProducts.map((product, index) => (
+                <motion.div
+                  key={product.id}
+                  custom={index}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={productVariants}
+                  className="relative group"
+                  onMouseEnter={() => setHoveredProduct(product.id)}
+                  onMouseLeave={() => setHoveredProduct(null)}
                 >
-                  QUICK VIEW
-                </button>
-              </div>
-            </div>
+                  {/* Product image with hover effect */}
+                  <div className="relative h-80 overflow-hidden">
+                    <img
+                      src={
+                        hoveredProduct === product.id
+                          ? product.images[1]
+                          : product.images[0]
+                      }
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-all duration-500"
+                    />
 
-            {/* Product info section */}
-            <div className="bg-white p-4 h-24 flex flex-col justify-between">
-              <h3 className="text-sm font-medium mb-2 line-clamp-2 overflow-hidden">
-                {product.name}
-              </h3>
-              <div className="flex justify-between items-center">
-                <p className="text-gray-800 font-semibold">{product.price}</p>
-                <p className="text-xs text-gray-500">{product.category}</p>
-              </div>
-            </div>
+                    {/* Out of stock label */}
+                    {!product.inStock && (
+                      <div className="absolute top-0 right-0 bg-black text-white text-xs font-bold px-3 py-1 m-2">
+                        OUT OF STOCK
+                      </div>
+                    )}
+
+                    {/* Black overlay with description - appears on hover */}
+                    <div
+                      className={`absolute bottom-0 left-0 right-0 h-1/5 bg-black bg-opacity-70 flex items-center px-4 text-white transform transition-all duration-300 ease-out ${
+                        hoveredProduct === product.id
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-full opacity-0"
+                      }`}
+                    >
+                      <p className="text-sm line-clamp-2">{product.description}</p>
+                    </div>
+
+                    {/* Quick view button - appears on hover */}
+                    <div
+                      className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
+                        hoveredProduct === product.id ? "opacity-100" : "opacity-0"
+                      }`}
+                    >
+                      <button
+                        className="bg-white text-black px-4 py-2 text-sm font-medium hover:bg-gray-100 transition-colors"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openQuickView(product);
+                        }}
+                      >
+                        QUICK VIEW
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Product info section */}
+                  <div className="bg-white p-4 h-24 flex flex-col justify-between">
+                    <h3 className="text-sm font-medium mb-2 line-clamp-2 overflow-hidden text-black">
+                      {product.name}
+                    </h3>
+                    <div className="flex justify-between items-center">
+                      <p className="text-gray-800 font-semibold">{product.price}</p>
+                      <p className="text-xs text-gray-500">{product.category}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
-        ))}
-      </div>
+        )}
+      </AnimatePresence>
 
       {/* Pagination */}
       {totalPages > 1 && (
