@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "./components/Footer/Footer";
+import Footer from "./components/Footer/Footer2";
 import AppRoutes from "./routes/Routes";
 import NewsletterPopup from './components/NewsletterPopup/NewsletterPopup'
 

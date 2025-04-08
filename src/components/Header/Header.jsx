@@ -63,12 +63,12 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
   };
 
   // Determine text and background colors based on hover effect and scroll state
-  const textColor = (isScrolled || (enableHoverEffect && isHovered)) ? 'text-primary-dark' : enableHoverEffect ? 'text-white' : 'text-primary-dark';
+  const textColor = (isScrolled || (enableHoverEffect && isHovered)) ? 'text-primary-black' : enableHoverEffect ? 'text-white' : 'text-primary-black';
   
   // FIX: Set different background colors based on conditions
   const backgroundColor = (isScrolled || (enableHoverEffect && isHovered)) 
-    ? 'bg-background-light' 
-    : enableHoverEffect ? 'bg-transparent' : 'bg-background-light';
+    ? 'bg-white/20 backdrop-blur-md border border-white/30' 
+    : enableHoverEffect ? 'bg-transparent' : 'bg-white/20 backdrop-blur-md border border-white/30';
 
   return (
     <>

@@ -10,7 +10,8 @@ export default {
       colors: {
         primary: {
           light: "#FFF3DF",  // Antique white
-          dark: "#49371B",   // dark coffee
+          dark: "#49371B",  // dark coffee
+          black: "#272727",  // Dark gray
         },
         background: {
           flashLIght: "#EFEFEF",  // Flash light

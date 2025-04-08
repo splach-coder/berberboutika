@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { LuFilter } from "react-icons/lu";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import ProductQuickViewModal from "./ProductQuickViewModal";
+import ProductsHeader from "./ProductsHeader";
+
 
 const ProductsPage = () => {
   const [searchParams] = useSearchParams();
   const initialCollection = searchParams.get("collection") || "all";
+  const navigate = useNavigate();
 
   // States
   const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -176,16 +179,7 @@ const ProductsPage = () => {
       />
 
       {/* Header Section */}
-      <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold uppercase tracking-wider mb-4 text-black">
-          OUR PRODUCTS
-        </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          Discover our collection of handcrafted home fragrances and decorative
-          items. Each piece is carefully designed to bring elegance and
-          character to your home.
-        </p>
-      </div>
+      {initialCollection == 'all' && (<ProductsHeader />)}
 
       {/* Filters Section */}
       <div className="mb-8">
@@ -261,6 +255,14 @@ const ProductsPage = () => {
             className="relative group"
             onMouseEnter={() => setHoveredProduct(product.id)}
             onMouseLeave={() => setHoveredProduct(null)}
+            onClick={() => {
+              // Navigate to the product page
+              navigate(`/product`, {
+                state: {
+                  product
+                },
+              });
+            }}
           >
             <div className="relative h-80 overflow-hidden">
               <img

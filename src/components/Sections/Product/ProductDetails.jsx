@@ -1,7 +1,6 @@
-import React, { useState, useRef } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
-  FaHeart,
   FaFacebook,
   FaTwitter,
   FaWhatsapp,
@@ -16,13 +15,16 @@ import {
   FaShippingFast,
   FaStar,
 } from "react-icons/fa";
-import { MdVerified } from "react-icons/md";
 
 const ProductDetail = () => {
-
   // Get the product data passed via state
   const location = useLocation();
   const product = location.state?.product;
+  // State for products data
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [hoveredProduct, setHoveredProduct] = useState(null);
+  const navigate = useNavigate();
 
   // State for image slider
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -35,6 +37,52 @@ const ProductDetail = () => {
   // Refs
   const imageRef = useRef(null);
   const zoomRef = useRef(null);
+
+  // Fetch related products
+  useEffect(() => {
+    const fetchRelatedProducts = async () => {
+      try {
+        const response = await fetch("/src/data/products.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products data");
+        }
+        const data = await response.json();
+
+        // Find related products based on category or collection
+        const relatedProducts = data
+          .filter((p) => {
+            // Exclude the current product
+            if (p.id === product.id) return false;
+
+            // Match by category
+            if (p.category === product.category) return true;
+
+            // Match by collection
+            if (product.collection && p.collection) {
+              return product.collection.some((tag) =>
+                p.collection.includes(tag)
+              );
+            }
+
+            return false;
+          })
+          .slice(0, 4);
+
+        setProducts(relatedProducts);
+      } catch (error) {
+        console.error("Error loading related products:", error);
+        // Set fallback empty array in case of error
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // Only fetch related products if we have a product
+    if (product) {
+      fetchRelatedProducts();
+    }
+  }, [product]);
 
   // Handle image navigation
   const nextImage = () => {
@@ -95,11 +143,6 @@ const ProductDetail = () => {
   const checkoutWithEtsy = () => {
     // This would redirect to Etsy or open a modal with Etsy checkout
     alert("Redirecting to Etsy checkout...");
-  };
-
-  // Toggle favorite
-  const toggleFavorite = () => {
-    setFavorite(!favorite);
   };
 
   return (
@@ -263,24 +306,6 @@ const ProductDetail = () => {
             </p>
           </div>
 
-          {/* Seller Info */}
-          <div className="flex items-center space-x-2 border-t border-gray-200 pt-4">
-            <div className="w-12 h-12 rounded-full bg-gray-200"></div>
-            <div>
-              <div className="flex items-center">
-                <h3 className="font-medium text-gray-800">
-                  {product.sellerInfo.name}
-                </h3>
-                {product.sellerInfo.isVerified && (
-                  <MdVerified className="text-blue-500 ml-1" />
-                )}
-              </div>
-              <p className="text-sm text-gray-600">
-                Responds {product.sellerInfo.responseTime}
-              </p>
-            </div>
-          </div>
-
           {/* Quantity Selector */}
           <div className="flex items-center space-x-4 border-t border-gray-200 pt-4">
             <span className="text-gray-700">Quantity:</span>
@@ -343,16 +368,7 @@ const ProductDetail = () => {
               <FaEtsy className="mr-2" />
               Buy on Etsy
             </button>
-            <button
-              className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                favorite
-                  ? "bg-red-100 text-red-500"
-                  : "bg-gray-100 text-gray-500"
-              } hover:bg-gray-200`}
-              onClick={toggleFavorite}
-            >
-              <FaHeart className={favorite ? "text-red-500" : ""} />
-            </button>
+
           </div>
 
           {/* Additional Info */}
@@ -644,12 +660,13 @@ const ProductDetail = () => {
           <FaTag className="text-gray-500 mr-2" />
           <div className="flex flex-wrap gap-2">
             {product.collection.map((tag, index) => (
-              <span
+              <a
+                href={`/products?collection=${tag}`}
                 key={index}
                 className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full hover:bg-gray-200 cursor-pointer"
               >
                 {tag}
-              </span>
+              </a>
             ))}
           </div>
         </div>
@@ -674,36 +691,83 @@ const ProductDetail = () => {
         <h2 className="text-xl font-bold text-gray-800 mb-4">
           You May Also Like
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {[1, 2, 3, 4].map((item) => (
-            <div
-              key={item}
-              className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow"
-            >
-              <div className="aspect-w-1 aspect-h-1 bg-gray-100">
-                <img
-                  src="/api/placeholder/300/300"
-                  alt="Related product"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-sm font-medium text-gray-800 truncate">
-                  Wooden Coffee Table
-                </h3>
-                <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm font-bold text-gray-800">
-                    $89.99
-                  </span>
-                  <div className="flex items-center">
-                    <FaStar className="text-yellow-500" size={12} />
-                    <span className="text-xs text-gray-500 ml-1">4.7</span>
-                  </div>
+        {loading ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[1, 2, 3, 4].map((item) => (
+              <div key={item} className="animate-pulse">
+                <div className="aspect-w-1 aspect-h-1 bg-gray-200"></div>
+                <div className="p-4">
+                  <div className="h-4 bg-gray-200 mb-2"></div>
+                  <div className="h-4 bg-gray-200 w-2/3"></div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : products.length > 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {products.map((relatedProduct) => (
+              <div
+                key={relatedProduct.id}
+                onClick={() => {
+                  // Scroll to top
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+
+                  // Navigate to the product page
+                  navigate(`/product`, {
+                    state: {
+                      product: relatedProduct,
+                    },
+                  });
+                }}
+                className="relative flex-shrink-0 w-full snap-start"
+                onMouseEnter={() => setHoveredProduct(relatedProduct.id)}
+                onMouseLeave={() => setHoveredProduct(null)}
+              >
+                {/* Product image with hover effect */}
+                <div className="relative h-80 overflow-hidden">
+                  <img
+                    src={
+                      hoveredProduct === relatedProduct.id &&
+                      relatedProduct.images.length > 1
+                        ? relatedProduct.images[1]
+                        : relatedProduct.images[0]
+                    }
+                    alt={relatedProduct.name}
+                    className="w-full h-full object-cover transition-all duration-500"
+                  />
+
+                  {/* Black overlay with description - appears on hover (20% height from bottom) */}
+                  <div
+                    className={`absolute bottom-0 left-0 right-0 h-1/5 bg-black bg-opacity-70 flex items-center px-4 text-white transform transition-all duration-300 ease-out ${
+                      hoveredProduct === relatedProduct.id
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-full opacity-0"
+                    }`}
+                  >
+                    <p className="text-sm line-clamp-2">
+                      {relatedProduct.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Product info section */}
+                <div className="bg-white p-4 h-24 flex flex-col justify-between">
+                  <h3 className="text-sm text-black font-medium mb-2 line-clamp-2 h-12 overflow-hidden">
+                    {relatedProduct.name}
+                  </h3>
+                  <p className="text-gray-800 font-semibold mt-auto">
+                    {relatedProduct.price} DH
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-500 text-center">No related products found</p>
+        )}
       </div>
     </div>
   );

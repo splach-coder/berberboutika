@@ -23,9 +23,9 @@ const FaqItem = ({ question, answer, defaultOpen = false }) => {
 
 const FaqComponent = () => {
   return (
-    <div className="py-16 max-w-4xl mx-auto px-4 text-black">
+    <div className="py-16 max-w-4xl mx-auto px-4 text-black pt-32 lg:pt-48">
       <h1 className="text-4xl font-bold text-center mb-4">F.A.Q.</h1>
-      <h2 className="text-3xl font-medium text-center mb-12">Commander sur chabichic.com</h2>
+      <h2 className="text-3xl font-medium text-center mb-12">Commander sur berberboutika.com</h2>
 
       <div className="space-y-2">
         <FaqItem 

@@ -1,30 +1,6 @@
 import React, { useState } from 'react';
 
 const FeaturesAndTestimonials = () => {
-  // Features data
-  const features = [
-    {
-      id: 1,
-      icon: "🇲🇦",
-      title: "Authentically Moroccan "
-    },
-    {
-      id: 2,
-      icon: "👐",
-      title: "Crafted by Skilled Artisans"
-    },
-    {
-      id: 3,
-      icon: "🏪",
-      title: "Timeless & Unique Pieces"
-    },
-    {
-      id: 4,
-      icon: "🛒",
-      title: "Shipped Worldwide"
-    }
-  ];
-
   // Testimonial data
   const testimonials = [
     {
@@ -97,31 +73,9 @@ const FeaturesAndTestimonials = () => {
   const goToTestimonial = (index) => {
     setCurrentTestimonial(index);
   };
-  
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-  
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-20 bg-white text-black">
-      {/* Features section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
-        {features.map((feature) => (
-          <div key={feature.id} className="flex items-center space-x-4">
-            <div className="text-amber-500 text-3xl">
-              <span className="w-12 h-12 border border-amber-500 rounded-full flex items-center justify-center">
-                {feature.icon}
-              </span>
-            </div>
-            <div className="font-medium">{feature.title}</div>
-          </div>
-        ))}
-      </div>
-
+    <div className="max-w-6xl mx-auto px-4 py-8 bg-white text-black">
       {/* Testimonials section */}
       <div className="text-center mb-16">
         <h2 className="text-2xl uppercase tracking-widest mb-16">What our customers say</h2>

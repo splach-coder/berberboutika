@@ -87,7 +87,7 @@ const ProductShowcaseSlider = () => {
           THE MUST-HAVE OF THE MOMENT
         </h2>
         <div className="flex items-center justify-center text-lg text-gray-600 space-x-2">
-          <span>NEW PRODUCTS</span>
+          <a href="/products?collection=new products">NEW PRODUCTS</a>
           <span>/</span>
           <span className="text-gray-400">BEST SELLERS</span>
         </div>
@@ -129,7 +129,7 @@ const ProductShowcaseSlider = () => {
             <div
               key={product.id}
               onClick={() => navigateToProductPage(product)}
-              className="relative flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start"
+              className="relative flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/5 snap-start shadow-sm cursor-pointer"
               onMouseEnter={() => setHoveredProduct(product.id)}
               onMouseLeave={() => setHoveredProduct(null)}
             >

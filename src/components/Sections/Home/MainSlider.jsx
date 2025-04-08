@@ -1,36 +1,49 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MainSlider = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const slides = [
     {
-      image: "/images/slider/slider1.jpg",
-      title: "Mix&match",
-      subtitle: "MINIMALIST SCANDINAVE",
-      alt: "Minimalist Scandinavian table setting",
+      image: "/images/slider/slider1.jpeg",
+      title: "New Products",
+      subtitle: "LATEST FINDS",
+      alt: "Newly released home decor products",
+      link: "/products?collection=new products"
     },
     {
-      image: "/images/slider/slider2.jpg",
-      title: "Home Collection",
-      subtitle: "MODERN ELEGANCE",
-      alt: "Modern elegant home decor",
+      image: "/images/slider/slider2.jpeg",
+      title: "Zellige & Ceramics",
+      subtitle: "MOROCCAN INSPIRED",
+      alt: "Zellige tiles and handcrafted ceramics",
+      link: "/products?collection=zellige ceramics"
     },
     {
-      image: "/images/slider/slider3.jpg",
-      title: "Artisanal",
-      subtitle: "HANDCRAFTED BEAUTY",
-      alt: "Handcrafted decorative items",
+      image: "/images/slider/slider3.jpeg",
+      title: "Berber Textiles",
+      subtitle: "HERITAGE WOVEN IN",
+      alt: "Traditional Berber woven textiles",
+      link: "/products?collection=berber textiles"
     },
     {
-      image: "/images/slider/slider4.jpg",
-      title: "New Arrivals",
-      subtitle: "SPRING COLLECTION",
-      alt: "Spring collection items",
+      image: "/images/slider/slider4.jpeg",
+      title: "Kitchen Essentials",
+      subtitle: "STYLE MEETS FUNCTION",
+      alt: "Essential kitchen tools and decor",
+      link: "/products?collection=kitchen essentials"
+    },
+    {
+      image: "/images/slider/slider5.jpeg",
+      title: "Salon Sanctuary",
+      subtitle: "CHILL ZONE VIBES",
+      alt: "Relaxing salon space with cozy decor",
+      link: "/products?collection=salon sanctuary"
     },
   ];
-
+  
   useEffect(() => {
     // Start animation when component mounts or slide changes
     setIsAnimating(true);
@@ -68,6 +81,10 @@ const MainSlider = () => {
     const newIndex = (currentSlide - 1 + slides.length) % slides.length;
     setCurrentSlide(newIndex);
     setIsAnimating(true);
+  };
+
+  const handleDiscoverClick = (link) => {
+    navigate(link);
   };
 
   return (
@@ -118,7 +135,10 @@ const MainSlider = () => {
               <h3 className="text-3xl md:text-5xl font-bold mb-8">
                 {slide.subtitle}
               </h3>
-              <button className="border border-white text-white px-8 py-2 hover:bg-white hover:text-gray-800 transition-colors">
+              <button 
+                className="border border-white text-white px-8 py-2 hover:bg-white hover:text-gray-800 transition-colors"
+                onClick={() => handleDiscoverClick(slide.link)}
+              >
                 DISCOVER
               </button>
             </div>

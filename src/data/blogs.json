@@ -3,22 +3,22 @@
       {
         "id": 1,
         "title": "How Much Should You Spend on a Quality Sofa?",
-        "category": "Home Decor",
+        "categories": ["Home Decor"],
         "shortDescription": "Discover the perfect balance between budget and quality when investing in a sofa.",
         "dateOfRelease": "2023-09-15",
         "views": 1245,
-        "img": "/images/blog/sofa.jpg",
+        "img": "/images/products/1.jpeg",
         "text": "When it comes to buying a sofa, it's essential to strike the right balance between cost and quality. A sofa is not just a piece of furniture; it’s a centerpiece of your living room and a place where memories are made. In this article, we’ll explore how much you should realistically spend based on your needs, lifestyle, and budget. From budget-friendly options to luxury investments, we’ll guide you through the decision-making process.",
-        "likesCount": 89
+        "author": "BerBer Boutika"
       },
       {
         "id": 2,
         "title": "Top 5 Sustainable Home Decor Trends for 2023",
-        "category": "Sustainability",
+        "categories": ["Sustainability"],
         "shortDescription": "Explore eco-friendly decor trends that are both stylish and planet-friendly.",
         "dateOfRelease": "2023-09-20",
         "views": 2310,
-        "img": "/images/blog/sustainable-decor.jpg",
+        "img": "/images/products/2.jpeg",
         "text": "As awareness about climate change grows, so does the demand for sustainable home decor. This year, designers are embracing eco-conscious materials and practices like never before. In this article, we’ll cover the top five sustainable decor trends for 2023, including upcycled furniture, natural textiles, and energy-efficient lighting. Learn how you can make your home both beautiful and environmentally responsible.",
         "likesCount": 156
       },
@@ -29,7 +29,7 @@
         "shortDescription": "Maximize your small space with clever design tips and tricks.",
         "dateOfRelease": "2023-09-25",
         "views": 1876,
-        "img": "/images/blog/small-space.jpg",
+        "img": "/images/products/3.jpeg",
         "text": "Living in a small space doesn’t mean sacrificing style or comfort. With the right design strategies, you can transform even the tiniest apartment into a functional and inviting home. In this guide, we’ll share expert tips on maximizing storage, choosing multi-functional furniture, and using color and lighting to create the illusion of more space. Whether you’re a renter or homeowner, these ideas will help you make the most of your square footage.",
         "likesCount": 123
       },
@@ -40,7 +40,7 @@
         "shortDescription": "Learn why handcrafted furniture is a timeless addition to any home.",
         "dateOfRelease": "2023-10-01",
         "views": 987,
-        "img": "/images/blog/handcrafted-furniture.jpg",
+        "img": "/images/products/4.jpeg",
         "text": "In a world of mass-produced goods, handcrafted furniture stands out as a symbol of quality and artistry. While it may come with a higher price tag, the durability, uniqueness, and craftsmanship of handmade pieces make them a worthwhile investment. In this article, we’ll discuss the benefits of choosing handcrafted furniture, how to identify authentic pieces, and tips for incorporating them into your home decor.",
         "likesCount": 78
       },
@@ -51,7 +51,7 @@
         "shortDescription": "Upgrade your cooking game with these essential kitchen tools.",
         "dateOfRelease": "2023-10-05",
         "views": 3456,
-        "img": "/images/blog/kitchen-gadgets.jpg",
+        "img": "/images/products/5.jpeg",
         "text": "Whether you’re a seasoned chef or a beginner in the kitchen, having the right tools can make all the difference. From versatile knives to innovative gadgets, we’ve curated a list of the top 10 must-have kitchen tools every home cook should own. Discover how these gadgets can simplify meal prep, save time, and elevate your culinary creations.",
         "likesCount": 210
       },
@@ -62,7 +62,7 @@
         "shortDescription": "Unlock the secrets to better sleep and wake up refreshed every day.",
         "dateOfRelease": "2023-10-10",
         "views": 2789,
-        "img": "/images/blog/sleep.jpg",
+        "img": "/images/products/6.jpeg",
         "text": "Sleep is essential for physical and mental well-being, yet many people struggle to get enough restful sleep. In this article, we’ll explore the science behind sleep cycles, share tips for creating a sleep-friendly environment, and discuss how habits like screen time and diet impact your rest. Learn how small changes can lead to big improvements in your sleep quality.",
         "likesCount": 134
       },
@@ -73,7 +73,7 @@
         "shortDescription": "Discover the latest gadgets revolutionizing how we live and work.",
         "dateOfRelease": "2023-10-12",
         "views": 4567,
-        "img": "/images/blog/tech-gadgets.jpg",
+        "img": "/images/products/7.jpeg",
         "text": "From smart home devices to wearable tech, innovation is reshaping our daily lives. In this article, we’ll highlight five game-changing gadgets released in 2023. Whether you’re looking to boost productivity, enhance entertainment, or simplify household chores, these tools will help you stay ahead of the curve. Get ready to embrace the future!",
         "likesCount": 312
       },

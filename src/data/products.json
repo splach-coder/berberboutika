@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "name": "Handcrafted Wooden Side Table",
-    "description": "A beautiful handcrafted wooden side table made from sustainable oak. Perfect for any living room or bedroom decor.",
+    "name": "Playful Ceramic Planter",
+    "description": "Cheerful pink ceramic planter with a smiling sun design, blue waves, and clouds, holding a lush green plant on a marble surface.",
     "price": 129.99,
     "discountPrice": 99.99,
     "currency": "$",
@@ -15,7 +15,6 @@
     "images": [
       "/images/products/12.jpeg",
       "/images/products/10.jpeg",
-      "/images/products/14.jpeg",
       "/images/products/13.jpeg"
     ],
     "specifications": [
@@ -25,12 +24,6 @@
       { "name": "Finish", "value": "Natural Wax" },
       { "name": "Assembly", "value": "Minimal assembly required" }
     ],
-    "sellerInfo": {
-      "name": "BerBerBoutika",
-      "rating": 5,
-      "responseTime": "Within 24 hours",
-      "isVerified": true
-    },
     "shippingInfo": {
       "freeShipping": true,
       "estimatedDelivery": "3-5 business days",

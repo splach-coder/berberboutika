@@ -6,12 +6,14 @@ import {
   LuZoomIn,
   LuShoppingCart,
 } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 // This component will be imported into your ProductsPage component
 const ProductQuickViewModal = ({ product, isOpen, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const navigate = useNavigate();
   const imageRef = useRef(null);
   const modalRef = useRef(null);
 
@@ -267,6 +269,14 @@ const ProductQuickViewModal = ({ product, isOpen, onClose }) => {
 
             {/* Add to cart button */}
             <button
+              onClick={() => {
+                // Navigate to the product page
+                navigate(`/product`, {
+                  state: {
+                    product,
+                  },
+                });
+              }}
               disabled={!product.inStock}
               className={`w-full py-3 px-4 rounded flex items-center justify-center space-x-2 ${
                 product.inStock
@@ -275,7 +285,7 @@ const ProductQuickViewModal = ({ product, isOpen, onClose }) => {
               } transition-colors`}
             >
               <LuShoppingCart size={20} />
-              <span>{product.inStock ? "Add to Cart" : "Out of Stock"}</span>
+              <span>{product.inStock ? "Show Product" : "Out of Stock"}</span>
             </button>
           </div>
         </div>
