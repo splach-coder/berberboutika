@@ -142,7 +142,7 @@ const AsymmetricalProductShowcase = () => {
 
       <main className="min-h-screen bg-background-light">
         {/* Moroccan-inspired header */}
-        <header className="relative overflow-hidden bg-gradient-to-b from-primary-light to-background-light py-16 px-4 md:px-8">
+        <header className="relative overflow-hidden bg-gradient-to-b from-primary-light to-white py-16 px-4 md:px-8">
           <div className="absolute inset-0 opacity-10" style={{
             backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')"
           }}></div>
@@ -167,16 +167,14 @@ const AsymmetricalProductShowcase = () => {
         </header>
 
         {/* Featured Products Section with Swiper */}
-        <section className="max-w-7xl mx-auto px-4 md:px-8 py-16">
-          <div className="mb-16">
-            <h2 className="text-3xl font-moroccan text-primary-dark mb-8 text-center">Featured Collection</h2>
-            
+        <section className="mx-auto px-4 md:px-8 pb-8 bg-white">
+          <div className="mb-16">            
             <Swiper
               spaceBetween={24}
               slidesPerView={1}
               breakpoints={{
                 640: { slidesPerView: 2 },
-                768: { slidesPerView: 3 },
+                768: { slidesPerView: 4 },
                 1024: { slidesPerView: 5 }
               }}
               className="product-swiper"

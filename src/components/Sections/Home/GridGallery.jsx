@@ -131,7 +131,7 @@ const GridGallery = () => {
       <main className="w-full bg-white">
         <section 
           aria-label="Featured Collections Gallery"
-          className="container mx-auto px-4 py-8"
+          className=" mx-auto px-4 py-8"
           ref={galleryRef}
         >
           <h1 className="sr-only">Featured Product Collections</h1>

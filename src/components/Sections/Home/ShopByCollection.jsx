@@ -83,7 +83,7 @@ const ShopByColor = () => {
         <meta name="description" content="Explore our curated tableware collections in various colors from Bleu Majorelle to Kaki" />
       </Helmet>
 
-      <main className="container mx-auto px-4 pt-12 pb-16 bg-white">
+      <main className=" mx-auto px-4 pt-12 pb-16 bg-white">
         <section aria-labelledby="shop-by-color-heading">
           <header className="text-center mb-12">
             <h1 id="shop-by-color-heading" className="text-3xl md:text-4xl font-serif font-medium mb-3 text-primary-dark">

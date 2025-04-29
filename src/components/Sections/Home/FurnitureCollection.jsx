@@ -40,7 +40,7 @@ const CountUp = ({ end, duration = 2000, suffix = "" }) => {
 
 const FurnitureCollection = () => {
   return (
-    <div className="container mx-auto font-sans mb-8">
+    <div className=" mx-auto font-sans mb-8">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row border-b border-gray-200 p-4 md:p-6">
         <div className="md:w-1/2">
