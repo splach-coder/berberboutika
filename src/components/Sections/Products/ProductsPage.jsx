@@ -3,7 +3,7 @@ import { LuFilter } from "react-icons/lu";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import ProductQuickViewModal from "./ProductQuickViewModal";
 import ProductsHeader from "./ProductsHeader";
-
+import { motion, AnimatePresence } from "framer-motion";
 
 const ProductsPage = () => {
   const [searchParams] = useSearchParams();
@@ -29,10 +29,10 @@ const ProductsPage = () => {
     fetch("/src/data/products.json")
       .then((response) => response.json())
       .then((data) => {
-        // Filter products based on categoryFilter
-        const filteredProducts = data.filter((product) =>
-          product.collection.includes(initialCollection)
-        );
+        const filteredProducts = data.filter((product) => {
+          if (categoryFilter === "all") return true; // Include all products
+          return product.collection === categoryFilter; // Filter by collection
+        });
         setAllProducts(filteredProducts);
       })
       .catch((error) => console.error("Error fetching products:", error));
@@ -160,7 +160,8 @@ const ProductsPage = () => {
   }, [loading, hasMore]);
 
   // Quick view functions
-  const openQuickView = (product) => {
+  const openQuickView = (product, e) => {
+    e.stopPropagation(); // Prevent event bubbling to parent
     setSelectedProduct(product);
     setIsQuickViewOpen(true);
   };
@@ -170,8 +171,18 @@ const ProductsPage = () => {
     setTimeout(() => setSelectedProduct(null), 300);
   };
 
+  // Product animation variants
+  const productVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3 }
+    }
+  };
+
   return (
-    <section className="mx-auto px-4 pb-12 bg-white text-black pt-44">
+    <section className="mx-auto px-4 pb-12 bg-background-light text-primary-black pt-44">
       <ProductQuickViewModal
         product={selectedProduct}
         isOpen={isQuickViewOpen}
@@ -179,32 +190,38 @@ const ProductsPage = () => {
       />
 
       {/* Header Section */}
-      {initialCollection == 'all' && (<ProductsHeader />)}
+      {initialCollection === 'all' && <ProductsHeader />}
 
       {/* Filters Section */}
-      <div className="mb-8">
+      <div className="mb-8 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
           <button
             onClick={() => setFilterOpen(!filterOpen)}
-            className="flex items-center space-x-2 bg-gray-100 px-4 py-2 rounded-md mb-3 md:mb-0"
+            className="flex items-center space-x-2 bg-background-flashLIght px-4 py-2 rounded-md mb-3 md:mb-0 hover:bg-gray-100 transition-colors"
           >
-            <LuFilter />
-            <span>Filter & Sort</span>
+            <LuFilter className="text-primary-dark" />
+            <span className="text-primary-black">Filter & Sort</span>
           </button>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-600">
             Showing {products.length} of {getFilteredProducts().length} products
           </div>
         </div>
 
         {filterOpen && (
-          <div className="bg-gray-50 p-4 rounded-md mb-6 transition-all duration-300">
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="bg-background-flashLIght p-4 rounded-md mb-6 overflow-hidden"
+          >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <h3 className="font-medium mb-2">Sort By</h3>
+                <h3 className="font-medium mb-2 text-primary-black">Sort By</h3>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full p-2 border rounded-md bg-white"
+                  className="w-full p-2 border rounded-md bg-white text-primary-black border-gray-300 focus:ring-primary-dark focus:border-primary-dark"
                 >
                   <option value="default">Featured</option>
                   <option value="a-z">A-Z</option>
@@ -216,11 +233,11 @@ const ProductsPage = () => {
               </div>
 
               <div>
-                <h3 className="font-medium mb-2">Category</h3>
+                <h3 className="font-medium mb-2 text-primary-black">Category</h3>
                 <select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
-                  className="w-full p-2 border rounded-md bg-white"
+                  className="w-full p-2 border rounded-md bg-white text-primary-black border-gray-300 focus:ring-primary-dark focus:border-primary-dark"
                 >
                   {categories.map((category) => (
                     <option key={category} value={category}>
@@ -231,11 +248,11 @@ const ProductsPage = () => {
               </div>
 
               <div>
-                <h3 className="font-medium mb-2">Availability</h3>
+                <h3 className="font-medium mb-2 text-primary-black">Availability</h3>
                 <select
                   value={stockFilter}
                   onChange={(e) => setStockFilter(e.target.value)}
-                  className="w-full p-2 border rounded-md bg-white"
+                  className="w-full p-2 border rounded-md bg-white text-primary-black border-gray-300 focus:ring-primary-dark focus:border-primary-dark"
                 >
                   <option value="all">All Products</option>
                   <option value="in-stock">In Stock</option>
@@ -243,92 +260,95 @@ const ProductsPage = () => {
                 </select>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
 
       {/* Products Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="relative group"
-            onMouseEnter={() => setHoveredProduct(product.id)}
-            onMouseLeave={() => setHoveredProduct(null)}
-            onClick={() => {
-              // Navigate to the product page
-              navigate(`/product`, {
-                state: {
-                  product
-                },
-              });
-            }}
-          >
-            <div className="relative h-80 overflow-hidden">
-              <img
-                src={
-                  hoveredProduct === product.id
-                    ? product.images[1]
-                    : product.images[0]
-                }
-                alt={product.title}
-                className="w-full h-full object-cover transition-all duration-500"
-              />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <AnimatePresence>
+          {products.map((product) => (
+            <motion.div
+              key={product.id}
+              variants={productVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              className="relative group"
+              onMouseEnter={() => setHoveredProduct(product.id)}
+              onMouseLeave={() => setHoveredProduct(null)}
+              onClick={() => {
+                navigate(`/product`, {
+                  state: { product },
+                });
+              }}
+            >
+              <div className="relative h-80 overflow-hidden bg-background-flashLIght">
+                <img
+                  src={
+                    hoveredProduct === product.id
+                      ? product.images[1]
+                      : product.images[0]
+                  }
+                  alt={product.title}
+                  className="w-full h-full object-cover transition-opacity duration-300"
+                />
 
-              {!product.inStock && (
-                <div className="absolute top-0 right-0 bg-black text-white text-xs font-bold px-3 py-1 m-2">
-                  OUT OF STOCK
-                </div>
-              )}
+                {!product.inStock && (
+                  <div className="absolute top-2 right-2 bg-primary-dark text-white text-xs font-medium px-2 py-1 rounded">
+                    Out of stock
+                  </div>
+                )}
 
-              <div
-                className={`absolute bottom-0 left-0 right-0 h-1/5 bg-black bg-opacity-70 flex items-center px-4 text-white transform transition-all duration-300 ${
-                  hoveredProduct === product.id
-                    ? "translate-y-0"
-                    : "translate-y-full"
-                }`}
-              >
-                <p className="text-sm line-clamp-2">{product.description}</p>
-              </div>
-
-              <div
-                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-opacity ${
-                  hoveredProduct === product.id ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <button
-                  className="bg-white text-black px-4 py-2 text-sm font-medium hover:bg-gray-100"
-                  onClick={() => openQuickView(product)}
+                <div
+                  className={`absolute bottom-0 left-0 right-0 bg-primary-dark bg-opacity-90 text-white p-3 transition-all duration-300 ${
+                    hoveredProduct === product.id
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-full opacity-0"
+                  }`}
                 >
-                  QUICK VIEW
-                </button>
-              </div>
-            </div>
+                  <p className="text-xs line-clamp-2">{product.description}</p>
+                </div>
 
-            <div className="bg-white p-4 h-24 flex flex-col justify-between">
-              <h3 className="text-sm font-medium line-clamp-2">
-                {product.name}
-              </h3>
-              <div className="flex justify-between items-center">
-                <p className="text-gray-800 font-semibold">{product.price}</p>
-                <p className="text-xs text-gray-500">{product.category}</p>
+                <div
+                  className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity ${
+                    hoveredProduct === product.id ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  <button
+                    className="bg-white text-primary-dark px-4 py-2 text-xs font-medium hover:bg-background-flashLIght transition-colors border border-primary-dark"
+                    onClick={(e) => openQuickView(product, e)}
+                  >
+                    QUICK VIEW
+                  </button>
+                </div>
               </div>
-            </div>
-          </div>
-        ))}
+
+              <div className="bg-white p-4 h-24 flex flex-col justify-between border border-t-0 border-gray-200">
+                <h3 className="text-sm font-normal line-clamp-2 text-primary-black">
+                  {product.name}
+                </h3>
+                <div className="flex justify-between items-center">
+                  <p className="text-primary-dark font-medium text-sm">{product.price}</p>
+                  <p className="text-xs text-gray-500 capitalize">{product.category}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
 
       {/* Loading/End Message */}
-      <div ref={loadingRef} className="w-full py-8 flex justify-center">
+      <div ref={loadingRef} className="w-full py-8 flex justify-center max-w-7xl mx-auto">
         {loading && (
-          <div className="w-8 h-8 border-4 border-gray-200 border-t-black rounded-full animate-spin" />
+          <div className="w-8 h-8 border-4 border-gray-200 border-t-primary-dark rounded-full animate-spin" />
         )}
         {!hasMore && products.length > 0 && (
-          <p className="text-gray-500">No more products to load</p>
+          <p className="text-gray-500">You've reached the end</p>
         )}
         {products.length === 0 && !loading && (
           <div className="w-full text-center py-12">
-            <p className="text-xl font-medium text-gray-700">
+            <p className="text-lg font-medium text-primary-dark">
               No products found
             </p>
             <p className="text-gray-500 mt-2">Try adjusting your filters</p>

@@ -349,7 +349,7 @@ const MainSlider = ({ pageTitle = "Home Decor Collection", pageDescription = "Di
         </nav>
 
         {/* Arrow navigation */}
-        <div className="absolute inset-x-0 top-1/2 flex justify-between items-center px-4 z-20">
+        <div className="hidden absolute inset-x-0 top-1/2 sm:flex justify-between items-center px-4 z-20">
           <button
             onClick={prevSlide}
             className="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 rounded-full p-2"
@@ -396,7 +396,7 @@ const MainSlider = ({ pageTitle = "Home Decor Collection", pageDescription = "Di
         </div>
 
         {/* CSS for custom animations - using external CSS file would be better for production */}
-        <style jsx>{`
+        <style>{`
           @keyframes fadeIn {
             from {
               opacity: 0;

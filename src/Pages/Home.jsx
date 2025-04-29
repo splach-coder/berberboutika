@@ -7,9 +7,11 @@ import ShopByCollection from "../components/Sections/Home/ShopByCollection";
 import AsymmetricalProductShowcase from "../components/Sections/Home/AsymmetricalProductShowcase";
 import FurnitureCollection from "../components/Sections/Home/FurnitureCollection";
 import FeatureGrid from "../components/Sections/Home/FeatureGrid";
+import MoroccanNewsletter from "../components/Sections/Home/MoroccanNewsletter";
 import Header from "../components/Header/Header";
 
 const Home = () => {
+  
   return (
     <div className="bg-white">
       <Header enableHoverEffect={true} />
@@ -21,6 +23,7 @@ const Home = () => {
       <ShopByCollection />
       <FeatureGrid />
       <FeaturesAndTestimonials />
+      <MoroccanNewsletter />
     </div>
   );
 };

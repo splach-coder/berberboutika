@@ -5,13 +5,11 @@ import { Helmet } from 'react-helmet';
 const GridGallery = () => {
   const controls = useAnimation();
   const galleryRef = useRef(null);
-  const isInView = useInView(galleryRef, { once: false, amount: 0.2 });
+  const isInView = useInView(galleryRef, { once: true, amount: 0.2 });
   
   useEffect(() => {
     if (isInView) {
       controls.start('visible');
-    } else {
-      controls.start('hidden');
     }
   }, [controls, isInView]);
 
@@ -21,7 +19,7 @@ const GridGallery = () => {
       id: 'interior-scents',
       title: 'INTERIOR SCENTS',
       description: 'Candles, diffusers and indoor sprays, discover the Chabi Chic olfactory journey.',
-      imageUrl: '/images/products/tbasl.jpg',
+      imageUrl: '/images/products/1.jpeg',
       fullWidth: true,
       alt: 'Collection of luxury interior fragrance products including candles and diffusers',
       animation: { x: -100 } // Comes from left
@@ -30,7 +28,7 @@ const GridGallery = () => {
       id: 'collection-empreinte',
       title: 'COLLECTION EMPREINTE',
       description: '',
-      imageUrl: '/images/products/zlayf.jpg',
+      imageUrl: '/images/products/2.jpeg',
       alt: 'Handcrafted pottery and ceramic items from the Empreinte collection',
       animation: { x: 100 } // Comes from right
     },
@@ -38,7 +36,7 @@ const GridGallery = () => {
       id: 'new-products',
       title: 'NEW PRODUCTS',
       description: '',
-      imageUrl: '/images/products/tbasl2.jpg',
+      imageUrl: '/images/products/3.jpeg',
       badge: 'NEW',
       alt: 'Latest additions to our home decor and fragrance collections',
       animation: { y: 100 } // Comes from bottom
@@ -47,7 +45,7 @@ const GridGallery = () => {
       id: 'cups',
       title: 'CUPS',
       description: '',
-      imageUrl: '/images/products/hmer.jpg',
+      imageUrl: '/images/products/4.jpeg',
       tall: true,
       alt: 'Artisanal handmade cups and mugs in various designs and colors',
       animation: { x: 100, y: 50 } // Comes from bottom-right
@@ -149,7 +147,7 @@ const GridGallery = () => {
             {galleryItems.filter(item => item.fullWidth).map(item => (
               <motion.article 
                 key={item.id}
-                className="relative overflow-hidden rounded h-64 md:h-full"
+                className="relative overflow-hidden rounded-sm-sm h-64 md:h-full"
                 variants={getItemVariants(item.animation)}
               >
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -207,7 +205,7 @@ const GridGallery = () => {
                 {galleryItems.filter(item => !item.fullWidth && !item.tall).map(item => (
                   <motion.article 
                     key={item.id}
-                    className="relative overflow-hidden rounded h-64 md:h-full"
+                    className="relative overflow-hidden rounded-sm h-64 md:h-full"
                     style={{ height: 'calc(50% - 8px)' }}
                     variants={getItemVariants(item.animation)}
                   >
@@ -241,7 +239,7 @@ const GridGallery = () => {
                       </motion.h2>
                       {item.badge && (
                         <motion.div 
-                          className="absolute top-4 right-4 bg-pink-300 text-white rounded-full w-12 h-12 flex items-center justify-center"
+                          className="absolute top-4 right-4 bg-pink-300 text-white rounded-sm-full w-12 h-12 flex items-center justify-center"
                           initial={{ scale: 0, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ 
@@ -263,7 +261,7 @@ const GridGallery = () => {
               {galleryItems.filter(item => item.tall).map(item => (
                 <motion.article 
                   key={item.id}
-                  className="relative overflow-hidden rounded h-full"
+                  className="relative overflow-hidden rounded-sm h-full"
                   variants={getItemVariants(item.animation)}
                 >
                   <div className="absolute inset-0 w-full h-full overflow-hidden">

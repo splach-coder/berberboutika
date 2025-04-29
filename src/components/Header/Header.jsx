@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import SearchSidebar from '../SearchSideBar/SearchSideBar';
 
-const Header = ({ enableHoverEffect = true }) => { // Default to true if not provided
+const Header = ({ enableHoverEffect = true }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isMenuSidebarOpen, setIsMenuSidebarOpen] = useState(false);
   const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isSearchSidebarOpen, setIsSearchSidebarOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [isMobile, setIsMobile] = useState(false);
 
+  // Use useCallback to prevent unnecessary re-renders
+  const handleScroll = useCallback(() => {
+    if (window.scrollY > 50) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  }, []);
+
+  const handleResize = useCallback(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Standard mobile breakpoint
-    };
-
     // Initial checks
     handleResize();
     handleScroll();
@@ -34,11 +35,25 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [handleScroll, handleResize]);
 
   const toggleMenuSidebar = () => {
+    // Close search sidebar if open
+    if (isSearchSidebarOpen) setIsSearchSidebarOpen(false);
     setIsMenuSidebarOpen(!isMenuSidebarOpen);
     if (isCartSidebarOpen) setIsCartSidebarOpen(false);
+  };
+
+  // Improved toggle function for search sidebar
+  const toggleSearchSidebar = () => {
+    // Close menu sidebar if open
+    if (isMenuSidebarOpen) setIsMenuSidebarOpen(false);
+    setIsSearchSidebarOpen(!isSearchSidebarOpen);
+    
+    // Only reset search term when closing
+    if (isSearchSidebarOpen) {
+      setSearchTerm('');
+    }
   };
 
   const navigationLinks = [
@@ -55,17 +70,9 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
     },
   ];
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-    if (!isOpen) {
-      setSearchTerm('');
-    }
-  };
-
   // Determine text and background colors based on hover effect and scroll state
   const textColor = (isScrolled || (enableHoverEffect && isHovered)) ? 'text-primary-black' : enableHoverEffect ? 'text-white' : 'text-primary-black';
   
-  // FIX: Set different background colors based on conditions
   const backgroundColor = (isScrolled || (enableHoverEffect && isHovered)) 
     ? 'bg-white/20 backdrop-blur-md border border-white/30' 
     : enableHoverEffect ? 'bg-transparent' : 'bg-white/20 backdrop-blur-md border border-white/30';
@@ -75,10 +82,10 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
       {/* Main header */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-md ${
-          isScrolled ? 'py-2' : 'pt-4 pb-8 border-b border-white'
+          isScrolled ? 'py-2' : 'py-4 border-b border-white'
         } ${backgroundColor}`}
-        onMouseEnter={() => enableHoverEffect && setIsHovered(true)} // Only enable hover if `enableHoverEffect` is true
-        onMouseLeave={() => enableHoverEffect && setIsHovered(false)} // Only enable hover if `enableHoverEffect` is true
+        onMouseEnter={() => enableHoverEffect && setIsHovered(true)}
+        onMouseLeave={() => enableHoverEffect && setIsHovered(false)}
         style={{
           transition: 'background 0.5s ease'
         }}
@@ -102,9 +109,9 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
             <a href="/"> 
               <img
                 src="/images/logos/logo.png"
-                alt="CHABI CHIC"
+                alt="Berber boutika"
                 className={`inline-block transition-all duration-300 ${
-                  isScrolled ? 'h-16' : (isMobile ? 'h-16' : 'h-24')
+                  isScrolled ? 'h-28' : (isMobile ? 'h-28' : 'h-28')
                 }`}
               />
             </a>
@@ -150,24 +157,20 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
 
           {/* Search - always visible */}
           <div className={`flex items-center space-x-4 ${textColor}`}>
-            <button className="p-1" onClick={toggleSidebar}>
+            <button 
+              className="p-1 focus:outline-none"
+              onClick={toggleSearchSidebar}
+              aria-label="Search"
+            >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </button>
           </div>
-
-          <SearchSidebar 
-            searchTerm={searchTerm}
-            isOpen={isOpen}
-            toggleSidebar={toggleSidebar}
-            setIsOpen={setIsOpen}
-            setSearchTerm={setSearchTerm}
-          />
         </div>
       </header>
 
-      {/* Menu Sidebar - opens when menu icon is clicked */}
+      {/* Menu Sidebar */}
       <div
         className={`fixed top-0 left-0 h-full w-64 md:w-80 bg-background-light text-primary-dark shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
           isMenuSidebarOpen ? 'translate-x-0' : '-translate-x-full'
@@ -176,7 +179,7 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
         <div className="p-4 border-b">
           <div className="flex justify-between items-center">
             <h3 className="font-bold">Menu</h3>
-            <button onClick={toggleMenuSidebar} className="p-2" aria-label="Close menu">
+            <button onClick={toggleMenuSidebar} className="p-2 focus:outline-none" aria-label="Close menu">
               <svg
                 className="w-5 h-5"
                 fill="none"
@@ -228,13 +231,23 @@ const Header = ({ enableHoverEffect = true }) => { // Default to true if not pro
         </nav>
       </div>
 
+      {/* Pass correct props to SearchSidebar */}
+      <SearchSidebar 
+        searchTerm={searchTerm}
+        isOpen={isSearchSidebarOpen}
+        toggleSidebar={toggleSearchSidebar}
+        setIsOpen={setIsSearchSidebarOpen}
+        setSearchTerm={setSearchTerm}
+      />
+
       {/* Overlay when any sidebar is open */}
-      {(isMenuSidebarOpen || isCartSidebarOpen) && (
+      {(isMenuSidebarOpen || isCartSidebarOpen || isSearchSidebarOpen) && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={() => {
             setIsMenuSidebarOpen(false);
             setIsCartSidebarOpen(false);
+            setIsSearchSidebarOpen(false);
           }}
         ></div>
       )}

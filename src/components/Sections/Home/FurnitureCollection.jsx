@@ -44,15 +44,13 @@ const FurnitureCollection = () => {
       {/* Header Section */}
       <div className="flex flex-col md:flex-row border-b border-gray-200 p-4 md:p-6">
         <div className="md:w-1/2">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-1">Stylish</h1>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-1">And Durable Furniture</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-1">Moroccan Pottery</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-1"></h1>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Collection</h1>
         </div>
         <div className="md:w-1/2 mt-4 md:mt-0 text-gray-600">
           <p className="text-lg">
-            Discover our Stylish and Durable Furniture Collection, designed to elevate your
-            space with elegance and lasting quality. Perfect for any room, these pieces blend
-            modern design with exceptional functionality and comfort.
+          Discover our Authentic Moroccan Pottery Collection, crafted by Berber artisans to bring timeless elegance to your home. Each piece reflects centuries of tradition, vibrant colors, and hand-painted designs..
           </p>
         </div>
       </div>
@@ -64,9 +62,9 @@ const FurnitureCollection = () => {
             <span className="text-3xl md:text-4xl font-bold text-gray-900 mr-2">
               <CountUp end={25} suffix="+" />
             </span>
-            <span className="text-gray-500">Items</span>
+            <span className="text-gray-500">Pieces</span>
           </div>
-          <p className="mt-2 text-gray-600">Living Room</p>
+          <p className="mt-2 text-gray-600">Tagines & Tableware</p>
         </div>
         
         <div className="p-4 md:p-6 border-r border-gray-200">
@@ -74,9 +72,9 @@ const FurnitureCollection = () => {
             <span className="text-3xl md:text-4xl font-bold text-gray-900 mr-2">
               <CountUp end={10} suffix="+" />
             </span>
-            <span className="text-gray-500">Items</span>
+            <span className="text-gray-500">Bowls</span>
           </div>
-          <p className="mt-2 text-gray-600">Outdoor Furniture</p>
+          <p className="mt-2 text-gray-600">Decorative Serveware</p>
         </div>
         
         <div className="p-4 md:p-6 border-r border-gray-200">
@@ -84,9 +82,9 @@ const FurnitureCollection = () => {
             <span className="text-3xl md:text-4xl font-bold text-gray-900 mr-2">
               <CountUp end={15} suffix="+" />
             </span>
-            <span className="text-gray-500">Items</span>
+            <span className="text-gray-500">Vases</span>
           </div>
-          <p className="mt-2 text-gray-600">Dining Room</p>
+          <p className="mt-2 text-gray-600">DStatement Home Decor</p>
         </div>
         
         <div className="p-4 md:p-6 border-r border-gray-200">
@@ -94,9 +92,9 @@ const FurnitureCollection = () => {
             <span className="text-3xl md:text-4xl font-bold text-gray-900 mr-2">
               <CountUp end={18} suffix="+" />
             </span>
-            <span className="text-gray-500">Items</span>
+            <span className="text-gray-500">Teapots</span>
           </div>
-          <p className="mt-2 text-gray-600">Bedroom Furniture</p>
+          <p className="mt-2 text-gray-600">Authentic Moroccan Tea Sets</p>
         </div>
         
         <div className="p-4 md:p-6">
@@ -104,9 +102,9 @@ const FurnitureCollection = () => {
             <span className="text-3xl md:text-4xl font-bold text-gray-900 mr-2">
               <CountUp end={12} suffix="+" />
             </span>
-            <span className="text-gray-500">Items</span>
+            <span className="text-gray-500">Plates</span>
           </div>
-          <p className="mt-2 text-gray-600">Office Furniture</p>
+          <p className="mt-2 text-gray-600">Wall Art & Display Pieces</p>
         </div>
       </div>
       

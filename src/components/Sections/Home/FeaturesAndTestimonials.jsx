@@ -75,7 +75,7 @@ const FeaturesAndTestimonials = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 bg-white text-black">
+    <div className="max-w-6xl mx-auto px-4 bg-white text-black">
       {/* Testimonials section */}
       <div className="text-center mb-16">
         <h2 className="text-2xl uppercase tracking-widest mb-16">What our customers say</h2>

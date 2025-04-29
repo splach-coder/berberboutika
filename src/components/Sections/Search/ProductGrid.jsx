@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, Filter, Search } from "lucide-react";
 
-// Custom Slider Component
+// Custom Slider Component with refined design
 const CustomSlider = ({ defaultValue, max, step, onValueChange }) => {
   const [values, setValues] = useState(defaultValue);
   const [dragging, setDragging] = useState(null);
@@ -27,7 +27,6 @@ const CustomSlider = ({ defaultValue, max, step, onValueChange }) => {
     const newValues = [...values];
     newValues[dragging] = newValue;
 
-    // Ensure min handle doesn't go past max handle and vice versa
     if (dragging === 0 && newValue > values[1]) {
       newValues[0] = values[1];
     } else if (dragging === 1 && newValue < values[0]) {
@@ -57,11 +56,11 @@ const CustomSlider = ({ defaultValue, max, step, onValueChange }) => {
   return (
     <div className="relative w-full h-5 my-4" ref={sliderRef}>
       {/* Track background */}
-      <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -translate-y-1/2 rounded"></div>
+      <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -translate-y-1/2 rounded-full"></div>
 
       {/* Active track */}
       <div
-        className="absolute top-1/2 h-1 bg-black -translate-y-1/2 rounded"
+        className="absolute top-1/2 h-0.5 bg-primary-dark -translate-y-1/2 rounded-full"
         style={{
           left: `${(values[0] / max) * 100}%`,
           right: `${100 - (values[1] / max) * 100}%`,
@@ -72,7 +71,7 @@ const CustomSlider = ({ defaultValue, max, step, onValueChange }) => {
       {values.map((value, index) => (
         <div
           key={index}
-          className="absolute top-1/2 w-4 h-4 bg-black rounded-full -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+          className="absolute top-1/2 w-3 h-3 bg-primary-dark rounded-full -translate-x-1/2 -translate-y-1/2 cursor-pointer shadow-sm hover:shadow-md transition-shadow"
           style={{ left: `${(value / max) * 100}%` }}
           onMouseDown={(e) => handleMouseDown(index, e)}
           onTouchStart={(e) => handleMouseDown(index, e)}
@@ -85,7 +84,6 @@ const CustomSlider = ({ defaultValue, max, step, onValueChange }) => {
 const ProductGrid = () => {
   const location = useLocation();
   
-  // State for products and filters
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -100,7 +98,6 @@ const ProductGrid = () => {
   const productsPerPage = 8;
   const sortDropdownRef = useRef(null);
 
-  // Check for initial search term from navigation state
   useEffect(() => {
     const state = location.state;
     if (state && state.searchTerm) {
@@ -108,7 +105,6 @@ const ProductGrid = () => {
     }
   }, [location.state]);
 
-  // Fetch products data
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -124,40 +120,34 @@ const ProductGrid = () => {
     fetchProducts();
   }, []);
 
-// Filter and sort products
-useEffect(() => {
-  let result = [...products];
+  useEffect(() => {
+    let result = [...products];
 
-  // Apply search filter
-  if (searchQuery) {
-    const query = searchQuery.toLowerCase();
-    result = result.filter(
-      (product) =>
-        product.name.toLowerCase().includes(query) ||
-        product.category.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query)
-    );
-  }
-
-  // Apply price range filter
-  result = result.filter((product) => {
-    try {
-      // Ensure price is treated as a string and has proper format
-      const priceString = product.price?.toString() || "0";
-      const price = parseFloat(priceString.replace(/[^0-9.]/g, ""));
-      return price >= priceRange[0] && price <= priceRange[1];
-    } catch (error) {
-      console.error("Error processing product price:", product, error);
-      return false; // Exclude products with invalid price format
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(
+        (product) =>
+          product.name.toLowerCase().includes(query) ||
+          product.category.toLowerCase().includes(query) ||
+          product.description.toLowerCase().includes(query)
+      );
     }
-  });
 
-    // Apply in-stock filter
+    result = result.filter((product) => {
+      try {
+        const priceString = product.price?.toString() || "0";
+        const price = parseFloat(priceString.replace(/[^0-9.]/g, ""));
+        return price >= priceRange[0] && price <= priceRange[1];
+      } catch (error) {
+        console.error("Error processing product price:", product, error);
+        return false;
+      }
+    });
+
     if (showInStockOnly) {
       result = result.filter((product) => product.inStock);
     }
 
-    // Apply sorting
     if (sortOption === "price-low-high") {
       result.sort((a, b) => {
         const priceA = parseFloat(a.price.replace(/[^0-9.]/g, ""));
@@ -175,10 +165,9 @@ useEffect(() => {
     }
 
     setFilteredProducts(result);
-    setCurrentPage(1); // Reset to first page when filters change
+    setCurrentPage(1);
   }, [products, searchQuery, priceRange, showInStockOnly, sortOption]);
 
-  // Calculate current page products
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(
@@ -187,16 +176,12 @@ useEffect(() => {
   );
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
-  // Handle pagination
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Handle quick view
   const openQuickView = (product) => {
     console.log("Quick view:", product);
-    // This would typically open a modal with product details
   };
 
-  // Close sort dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -213,7 +198,6 @@ useEffect(() => {
     };
   }, []);
 
-  // Product animation variants
   const productVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (index) => ({
@@ -228,45 +212,45 @@ useEffect(() => {
   };
 
   return (
-    <>
-      {/* Header section with search, filter, and sort */}
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8 sm:mt-12 lg:mt-36">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-32">
+      {/* Header section */}
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
         <div className="relative w-full md:w-1/3 mb-4 md:mb-0">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
+            <Search className="h-5 w-5 text-gray-500" />
           </div>
           <input
             type="text"
             placeholder="Search products..."
-            className="w-full pl-10 pr-4 py-2 border bg-white border-gray-300 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border bg-white border-gray-300 text-primary-black rounded-md focus:outline-none focus:ring-1 focus:ring-primary-dark focus:border-transparent"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        <div className="flex gap-4 text-black">
+        <div className="flex gap-3 w-full md:w-auto justify-end">
           <button
-            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none hover:bg-gray-50"
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none hover:bg-background-flashLIght transition-colors text-primary-black"
             onClick={() => setFilterPanelOpen(true)}
           >
             <Filter className="h-4 w-4" />
-            Filter
+            <span className="text-sm">Filter</span>
           </button>
 
           <div className="relative" ref={sortDropdownRef}>
             <button
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none hover:bg-gray-50"
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none hover:bg-background-flashLIght transition-colors text-primary-black"
               onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
             >
-              Sort
-              <ChevronDown className="h-4 w-4" />
+              <span className="text-sm">Sort</span>
+              <ChevronDown className={`h-4 w-4 transition-transform ${sortDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
             {sortDropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-10 border border-gray-200">
-                <ul className="py-2">
+                <ul className="py-1">
                   <li
-                    className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                      sortOption === "default" ? "font-medium" : ""
+                    className={`px-4 py-2 hover:bg-background-flashLIght cursor-pointer text-sm ${
+                      sortOption === "default" ? "text-primary-dark font-medium" : "text-primary-black"
                     }`}
                     onClick={() => {
                       setSortOption("default");
@@ -276,8 +260,8 @@ useEffect(() => {
                     Default
                   </li>
                   <li
-                    className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                      sortOption === "price-low-high" ? "font-medium" : ""
+                    className={`px-4 py-2 hover:bg-background-flashLIght cursor-pointer text-sm ${
+                      sortOption === "price-low-high" ? "text-primary-dark font-medium" : "text-primary-black"
                     }`}
                     onClick={() => {
                       setSortOption("price-low-high");
@@ -287,8 +271,8 @@ useEffect(() => {
                     Price: Low to High
                   </li>
                   <li
-                    className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                      sortOption === "price-high-low" ? "font-medium" : ""
+                    className={`px-4 py-2 hover:bg-background-flashLIght cursor-pointer text-sm ${
+                      sortOption === "price-high-low" ? "text-primary-dark font-medium" : "text-primary-black"
                     }`}
                     onClick={() => {
                       setSortOption("price-high-low");
@@ -298,8 +282,8 @@ useEffect(() => {
                     Price: High to Low
                   </li>
                   <li
-                    className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                      sortOption === "popularity" ? "font-medium" : ""
+                    className={`px-4 py-2 hover:bg-background-flashLIght cursor-pointer text-sm ${
+                      sortOption === "popularity" ? "text-primary-dark font-medium" : "text-primary-black"
                     }`}
                     onClick={() => {
                       setSortOption("popularity");
@@ -316,8 +300,8 @@ useEffect(() => {
       </div>
 
       {/* Results count */}
-      <div className="mb-6 text-right text-gray-600">
-        {filteredProducts.length} results
+      <div className="mb-6 text-sm text-gray-600 border-b pb-2">
+        Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'item' : 'items'}
       </div>
 
       {/* Products grid */}
@@ -327,11 +311,14 @@ useEffect(() => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="text-center text-gray-500 py-10"
+            className="text-center text-gray-500 py-20"
           >
-            {searchQuery 
-              ? "No products found matching your search" 
-              : "No products available"}
+            <p className="text-lg mb-2">No products found</p>
+            <p className="text-sm">
+              {searchQuery 
+                ? "Try adjusting your search or filters" 
+                : "Please check back later"}
+            </p>
           </motion.div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -348,8 +335,7 @@ useEffect(() => {
                   onMouseEnter={() => setHoveredProduct(product.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
                 >
-                  {/* Product image with hover effect */}
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative h-80 overflow-hidden bg-background-flashLIght">
                     <img
                       src={
                         hoveredProduct === product.id
@@ -357,35 +343,32 @@ useEffect(() => {
                           : product.images[0]
                       }
                       alt={product.name}
-                      className="w-full h-full object-cover transition-all duration-500"
+                      className="w-full h-full object-cover transition-opacity duration-300"
                     />
 
-                    {/* Out of stock label */}
                     {!product.inStock && (
-                      <div className="absolute top-0 right-0 bg-black text-white text-xs font-bold px-3 py-1 m-2">
-                        OUT OF STOCK
+                      <div className="absolute top-2 right-2 bg-primary-dark text-white text-xs font-medium px-2 py-1 rounded">
+                        Out of stock
                       </div>
                     )}
 
-                    {/* Black overlay with description - appears on hover */}
                     <div
-                      className={`absolute bottom-0 left-0 right-0 h-1/5 bg-black bg-opacity-70 flex items-center px-4 text-white transform transition-all duration-300 ease-out ${
+                      className={`absolute bottom-0 left-0 right-0 bg-primary-dark bg-opacity-90 text-white p-3 transition-all duration-300 ${
                         hoveredProduct === product.id
                           ? "translate-y-0 opacity-100"
                           : "translate-y-full opacity-0"
                       }`}
                     >
-                      <p className="text-sm line-clamp-2">{product.description}</p>
+                      <p className="text-xs line-clamp-2">{product.description}</p>
                     </div>
 
-                    {/* Quick view button - appears on hover */}
                     <div
                       className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
                         hoveredProduct === product.id ? "opacity-100" : "opacity-0"
                       }`}
                     >
                       <button
-                        className="bg-white text-black px-4 py-2 text-sm font-medium hover:bg-gray-100 transition-colors"
+                        className="bg-white text-primary-dark px-4 py-2 text-xs font-medium hover:bg-background-flashLIght transition-colors border border-primary-dark"
                         onClick={(e) => {
                           e.stopPropagation();
                           openQuickView(product);
@@ -396,14 +379,13 @@ useEffect(() => {
                     </div>
                   </div>
 
-                  {/* Product info section */}
-                  <div className="bg-white p-4 h-24 flex flex-col justify-between">
-                    <h3 className="text-sm font-medium mb-2 line-clamp-2 overflow-hidden text-black">
+                  <div className="bg-white p-4 h-24 flex flex-col justify-between border border-t-0 border-gray-200">
+                    <h3 className="text-sm font-normal mb-2 line-clamp-2 overflow-hidden text-primary-black">
                       {product.name}
                     </h3>
                     <div className="flex justify-between items-center">
-                      <p className="text-gray-800 font-semibold">{product.price}</p>
-                      <p className="text-xs text-gray-500">{product.category}</p>
+                      <p className="text-primary-dark font-medium text-sm">{product.price}</p>
+                      <p className="text-xs text-gray-500 capitalize">{product.category}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -415,27 +397,27 @@ useEffect(() => {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center mt-8">
-          <nav className="flex space-x-2">
+        <div className="flex justify-center mt-12">
+          <nav className="flex space-x-1">
             <button
               onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
               disabled={currentPage === 1}
-              className={`px-3 py-1 rounded ${
+              className={`px-3 py-1 rounded text-sm ${
                 currentPage === 1
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-white border border-gray-300 text-primary-black hover:bg-background-flashLIght"
               }`}
             >
-              Prev
+              Previous
             </button>
             {[...Array(totalPages).keys()].map((number) => (
               <button
                 key={number + 1}
                 onClick={() => paginate(number + 1)}
-                className={`px-3 py-1 rounded ${
+                className={`px-3 py-1 rounded text-sm ${
                   currentPage === number + 1
-                    ? "bg-black text-white"
-                    : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                    ? "bg-primary-dark text-white"
+                    : "bg-white border border-gray-300 text-primary-black hover:bg-background-flashLIght"
                 }`}
               >
                 {number + 1}
@@ -448,10 +430,10 @@ useEffect(() => {
                 )
               }
               disabled={currentPage === totalPages}
-              className={`px-3 py-1 rounded ${
+              className={`px-3 py-1 rounded text-sm ${
                 currentPage === totalPages
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-white border border-gray-300 text-primary-black hover:bg-background-flashLIght"
               }`}
             >
               Next
@@ -466,58 +448,59 @@ useEffect(() => {
           filterPanelOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="p-6">
+        <div className="p-6 h-full flex flex-col">
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-xl font-medium">Filters</h3>
+            <h3 className="text-lg font-medium text-primary-black">Filters</h3>
             <button
-              className="text-gray-500 hover:text-gray-700"
+              className="text-gray-500 hover:text-primary-dark transition-colors"
               onClick={() => setFilterPanelOpen(false)}
             >
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
             </button>
           </div>
 
-          {/* Price range filter with custom slider */}
-          <div className="mb-8">
-            <h4 className="text-lg font-medium mb-4">Price Range</h4>
-            <div className="px-2">
-              <CustomSlider
-                defaultValue={[0, 100]}
-                max={100}
-                step={1}
-                onValueChange={(value) => {
-                  const minPrice = Math.floor(value[0] * 5); // Scale to 0-500 range
-                  const maxPrice = Math.floor(value[1] * 5); // Scale to 0-500 range
-                  setPriceRange([minPrice, maxPrice]);
-                }}
-              />
-              <div className="flex justify-between mt-2 text-sm text-gray-600">
-                <span>€{priceRange[0]}</span>
-                <span>€{priceRange[1]}</span>
+          <div className="flex-grow overflow-y-auto">
+            {/* Price range filter */}
+            <div className="mb-8">
+              <h4 className="text-md font-medium mb-4 text-primary-black">Price Range</h4>
+              <div className="px-2">
+                <CustomSlider
+                  defaultValue={[0, 100]}
+                  max={100}
+                  step={1}
+                  onValueChange={(value) => {
+                    const minPrice = Math.floor(value[0] * 5);
+                    const maxPrice = Math.floor(value[1] * 5);
+                    setPriceRange([minPrice, maxPrice]);
+                  }}
+                />
+                <div className="flex justify-between mt-2 text-xs text-gray-600">
+                  <span>€{priceRange[0]}</span>
+                  <span>€{priceRange[1]}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* In-stock toggle */}
+            <div className="mb-8">
+              <h4 className="text-md font-medium mb-4 text-primary-black">Availability</h4>
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="inStock"
+                  checked={showInStockOnly}
+                  onChange={() => setShowInStockOnly(!showInStockOnly)}
+                  className="h-4 w-4 text-primary-dark rounded border-gray-300 focus:ring-primary-dark"
+                />
+                <label htmlFor="inStock" className="ml-2 text-sm text-primary-black">
+                  In stock only
+                </label>
               </div>
             </div>
           </div>
 
-          {/* In-stock toggle */}
-          <div className="mb-8">
-            <h4 className="text-lg font-medium mb-4">Availability</h4>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="inStock"
-                checked={showInStockOnly}
-                onChange={() => setShowInStockOnly(!showInStockOnly)}
-                className="h-5 w-5 text-black rounded border-gray-300 focus:ring-black"
-              />
-              <label htmlFor="inStock" className="ml-2 text-gray-700">
-                Show in-stock items only
-              </label>
-            </div>
-          </div>
-
-          {/* Apply filters button */}
           <button
-            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors"
+            className="w-full bg-primary-dark text-white py-2 rounded hover:bg-button-darkHover transition-colors text-sm mt-auto"
             onClick={() => setFilterPanelOpen(false)}
           >
             Apply Filters
@@ -528,11 +511,11 @@ useEffect(() => {
       {/* Overlay when filter panel is open */}
       {filterPanelOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          className="fixed inset-0 bg-black bg-opacity-30 z-40"
           onClick={() => setFilterPanelOpen(false)}
         ></div>
       )}
-    </>
+    </div>
   );
 };
 

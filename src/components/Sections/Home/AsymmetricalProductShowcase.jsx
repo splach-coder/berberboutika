@@ -1,21 +1,38 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-fade';
 
 const AsymmetricalProductShowcase = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const [hoveredProduct, setHoveredProduct] = useState(null);
+  const navigate = useNavigate();
   
-  // SEO metadata
-  const pageTitle = "Must-Have Home Products | Our Kitchen Collection";
-  const pageDescription = "Discover our carefully curated products that blend functionality with aesthetic appeal. Shop our exclusive kitchen collection today.";
+  // SEO metadata with Moroccan cultural focus
+  const pageTitle = "Moroccan Treasures | Handcrafted Poetry & Traditional Artifacts";
+  const pageDescription = "Discover authentic Moroccan poetry books, handcrafted artifacts, and traditional treasures that embody centuries of rich cultural heritage.";
+
+  const navigateToProductPage = (product) => {
+    navigate(`/product`, { state: { product } });
+  };
+
+  const openQuickView = (product, e) => {
+    e.stopPropagation();
+    // Add your quick view logic here
+    console.log("Quick view for:", product.name);
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Consider using a service worker to cache this request
         const response = await fetch('/src/data/products.json');
         if (!response.ok) {
           throw new Error('Failed to fetch products');
@@ -33,45 +50,57 @@ const AsymmetricalProductShowcase = () => {
   }, []);
 
   if (loading) return (
-    <main aria-busy="true">
-      <div className="p-8 text-center text-xl" role="status">Loading products...</div>
+    <main className="min-h-screen flex items-center justify-center bg-background-light">
+      <div className="text-2xl font-moroccan text-primary-dark flex items-center">
+        <svg className="animate-spin h-8 w-8 mr-3 text-primary-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Discovering Moroccan Treasures...
+      </div>
     </main>
   );
   
   if (error) return (
-    <main>
-      <div className="p-8 text-center text-red-500" role="alert">Error: {error}</div>
+    <main className="min-h-screen flex items-center justify-center bg-background-light">
+      <div className="text-xl font-moroccan text-rose-800 p-8 border-l-4 border-rose-600 bg-white shadow-md">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 mx-auto mb-4 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <p className="text-center">Error loading treasures: {error}</p>
+        <button 
+          onClick={() => window.location.reload()}
+          className="mt-4 px-6 py-2 bg-rose-600 text-white rounded-sm hover:bg-rose-700 transition-colors"
+        >
+          Try Again
+        </button>
+      </div>
     </main>
   );
   
   if (!products.length) return (
-    <main>
-      <div className="p-8 text-center" role="status">No products found</div>
+    <main className="min-h-screen flex items-center justify-center bg-primary-light">
+      <div className="text-xl font-moroccan text-primary-dark p-8 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto mb-4 text-primary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+        <p>Our treasure chest appears empty at the moment.</p>
+        <p>Please check back later for exquisite Moroccan finds.</p>
+      </div>
     </main>
   );
 
-  // Group products for different layout sections
-  const featuredProduct = products[0];
-  const secondaryProducts = products.slice(1, 3);
-  const remainingProducts = products.slice(3, 7);
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
+  // Product animation variants
+  const productVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
+    visible: { 
+      opacity: 1, 
       y: 0,
-      transition: { duration: 0.5 }
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
     }
   };
 
@@ -80,22 +109,19 @@ const AsymmetricalProductShowcase = () => {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta name="keywords" content="kitchen products, home decor, furniture, must-have products" />
+        <meta name="keywords" content="Moroccan poetry, traditional artifacts, Arabic calligraphy, Berber crafts, cultural heritage" />
         
-        {/* Open Graph meta tags */}
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://yourwebsite.com/products" />
-        <meta property="og:image" content="https://yourwebsite.com/images/product-showcase.jpg" />
+        <meta property="og:image" content="https://yourwebsite.com/images/moroccan-treasures-showcase.jpg" />
         
-        {/* Twitter Card meta tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
-        <meta name="twitter:image" content="https://yourwebsite.com/images/product-showcase.jpg" />
+        <meta name="twitter:image" content="https://yourwebsite.com/images/moroccan-treasures-showcase.jpg" />
         
-        {/* Structured data for product listing */}
         <script type="application/ld+json">
           {`
             {
@@ -105,8 +131,8 @@ const AsymmetricalProductShowcase = () => {
                 {
                   "@type": "ListItem",
                   "position": 1,
-                  "name": "${featuredProduct.name}",
-                  "url": "https://yourwebsite.com/products/${featuredProduct.id}"
+                  "name": "${products[0]?.name || 'Moroccan Treasures'}",
+                  "url": "https://yourwebsite.com/products/${products[0]?.id || 'featured'}"
                 }
               ]
             }
@@ -114,314 +140,226 @@ const AsymmetricalProductShowcase = () => {
         </script>
       </Helmet>
 
-      <main className="container mx-auto px-4 py-12 text-primary-black">
-        <h1 className="text-4xl text-primary-dark font-bold mb-12 text-left pl-4 border-l-4 border-primary-dark">
-          THE MUST-HAVE OF THE MOMENT
-        </h1>
-        
-        {/* Hero Section - Asymmetrical with large featured product */}
-        <motion.section 
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          aria-label="Featured products showcase"
-        >
-          {/* Featured Product - Takes 2/3 of screen */}
-          <motion.div 
-            className="lg:col-span-2 bg-white rounded-sm overflow-hidden shadow-sm"
-            variants={itemVariants}
-          >
-            <div className="h-96 relative group">
-              <picture>
-                {/* Future WebP support */}
-                <source 
-                  type="image/webp" 
-                  srcSet={featuredProduct.images[0].replace('.jpg', '.webp')}
-                  media="(min-width: 640px)"
-                />
-                <img 
-                  src={featuredProduct.images[0]} 
-                  alt={`${featuredProduct.name} - ${featuredProduct.description?.substring(0, 50)}...`}
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                  loading="eager" // Load immediately as it's above the fold
-                  width="800"
-                  height="600"
-                />
-              </picture>
-              <div className="absolute top-4 left-4 bg-primary-light text-primary-dark px-3 py-1 rounded-full text-sm font-medium">
-                Featured
-              </div>
-              {featuredProduct.discountPrice && (
-                <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  Sale
-                </div>
-              )}
-            </div>
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-2">{featuredProduct.name}</h2>
-              <div className="flex items-center mb-4">
-                <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${i < Math.floor(featuredProduct.rating) ? 'text-yellow-400' : 'text-gray-300'}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                  <span className="ml-2 text-gray-600" aria-label={`Rated ${featuredProduct.rating} out of 5 stars`}>
-                    {featuredProduct.rating} ({featuredProduct.reviewCount} reviews)
-                  </span>
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4">{featuredProduct.description}</p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  {featuredProduct.discountPrice ? (
-                    <>
-                      <span className="text-2xl font-bold mr-2" aria-label="Sale price">{featuredProduct.currency}{featuredProduct.discountPrice}</span>
-                      <span className="text-gray-500 line-through" aria-label="Original price">{featuredProduct.currency}{featuredProduct.price}</span>
-                    </>
-                  ) : (
-                    <span className="text-2xl font-bold" aria-label="Price">{featuredProduct.currency}{featuredProduct.price}</span>
-                  )}
-                </div>
-                <motion.button 
-                  className="bg-button-dark text-white px-6 py-2 rounded-sm font-medium hover:bg-button-darkHover transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label={`View details for ${featuredProduct.name}`}
-                >
-                  View Details
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
-          
-          {/* Secondary Product Stack - Takes 1/3 of screen, stacked vertically */}
-          <div className="flex flex-col gap-8">
-            {secondaryProducts.map(product => (
-              <motion.div 
-                key={product.id} 
-                className="bg-white rounded-sm overflow-hidden shadow-sm h-72 flex flex-col"
-                variants={itemVariants}
-              >
-                <div className="h-64 relative overflow-hidden">
-                  <picture>
-                    <source 
-                      type="image/webp" 
-                      srcSet={product.images[0].replace('.jpg', '.webp')}
-                    />
-                    <img 
-                      src={product.images[0]} 
-                      alt={`${product.name} - ${product.description?.substring(0, 30)}...`}
-                      className="w-full h-full object-cover transition-all duration-300 hover:scale-110"
-                      loading="lazy"
-                      width="400"
-                      height="300"
-                    />
-                  </picture>
-                  {product.discountPrice && (
-                    <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                      Sale
-                    </div>
-                  )}
-                </div>
-                <div className="p-4 flex-grow flex flex-col justify-between">
-                  <h3 className="font-bold text-lg truncate">{product.name}</h3>
-                  <div className="flex justify-between items-center mt-2">
-                    <div className="flex items-center">
-                      {product.discountPrice ? (
-                        <>
-                          <span className="text-lg font-bold">{product.currency}{product.discountPrice}</span>
-                          <span className="text-sm text-gray-500 line-through ml-2">{product.currency}{product.price}</span>
-                        </>
-                      ) : (
-                        <span className="text-lg font-bold">{product.currency}{product.price}</span>
-                      )}
-                    </div>
-                    <motion.button 
-                      className="text-primary-dark hover:text-indigo-800 transition-colors"
-                      whileHover={{ scale: 1.2 }}
-                      whileTap={{ scale: 0.9 }}
-                      aria-label={`Add ${product.name} to cart`}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                    </motion.button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-        
-        {/* Asymmetrical Grid Section */}
-        <section 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-          aria-label="Featured collection items"
-        >
-          {/* Large product card spanning 2 columns */}
-          <motion.div 
-            className="md:col-span-2 row-span-2 bg-gradient-to-r from-primary-light to-primary-light p-6 rounded-sm shadow"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
-          >
-            {remainingProducts[0] && (
-              <div className="h-full flex flex-col md:flex-row">
-                <div className="md:w-1/2 h-64 md:h-auto mb-4 md:mb-0 relative overflow-hidden rounded-sm">
-                  <picture>
-                    <source 
-                      type="image/webp" 
-                      srcSet={remainingProducts[0].images[0].replace('.jpg', '.webp')}
-                    />
-                    <img 
-                      src={remainingProducts[0].images[0]} 
-                      alt={`${remainingProducts[0].name} - ${remainingProducts[0].description?.substring(0, 40)}...`}
-                      className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
-                      loading="lazy"
-                      width="600"
-                      height="400"
-                    />
-                  </picture>
-                </div>
-                <div className="md:w-1/2 md:pl-6 flex flex-col justify-center">
-                  <h3 className="text-xl font-bold mb-3">{remainingProducts[0].name}</h3>
-                  <p className="text-gray-600 mb-4">{remainingProducts[0].description}</p>
-                  <div className="flex items-center mb-4">
-                    {remainingProducts[0].discountPrice ? (
-                      <>
-                        <span className="text-xl font-bold">{remainingProducts[0].currency}{remainingProducts[0].discountPrice}</span>
-                        <span className="text-gray-500 line-through ml-2">{remainingProducts[0].currency}{remainingProducts[0].price}</span>
-                      </>
-                    ) : (
-                      <span className="text-xl font-bold">{remainingProducts[0].currency}{remainingProducts[0].price}</span>
-                    )}
-                  </div>
-                  <motion.button 
-                    className="bg-button-dark text-white px-6 py-2 mt-12 rounded-sm font-medium hover:bg-button-darkHover transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    aria-label={`View details for ${remainingProducts[0].name}`}
-                  >
-                    View Details
-                  </motion.button>
-                </div>
-              </div>
-            )}
-          </motion.div>
-          
-          {/* Smaller product cards */}
-          <Suspense fallback={<div className="col-span-1 h-48 bg-gray-100 animate-pulse"></div>}>
-            {remainingProducts.slice(1).map(product => (
-              <motion.div 
-                key={product.id} 
-                className="bg-white rounded-sm overflow-hidden shadow-sm transition-transform hover:translate-y-1"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="h-48 relative overflow-hidden">
-                  <picture>
-                    <source 
-                      type="image/webp" 
-                      srcSet={product.images[0].replace('.jpg', '.webp')}
-                    />
-                    <img 
-                      src={product.images[0]} 
-                      alt={`${product.name} product thumbnail`}
-                      className="w-full h-full object-cover transition-all duration-300 hover:scale-110"
-                      loading="lazy"
-                      width="300"
-                      height="200"
-                    />
-                  </picture>
-                  {product.discountPrice && (
-                    <div className="absolute top-3 right-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                      Sale
-                    </div>
-                  )}
-                </div>
-                <div className="p-4">
-                  <h3 className="font-bold text-lg mb-2 truncate">{product.name}</h3>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      {product.discountPrice ? (
-                        <>
-                          <span className="text-lg font-bold">{product.currency}{product.discountPrice}</span>
-                          <span className="text-sm text-gray-500 line-through ml-2">{product.currency}{product.price}</span>
-                        </>
-                      ) : (
-                        <span className="text-lg font-bold">{product.currency}{product.price}</span>
-                      )}
-                    </div>
-                    <motion.button 
-                      className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      aria-label={`Add ${product.name} to cart`}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                    </motion.button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </Suspense>
-        </section>
-        
-        {/* Quote/CTA Section with asymmetrical design */}
-        <motion.section 
-          className="flex flex-col md:flex-row bg-primary-light rounded-sm overflow-hidden h-72"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          aria-label="Kitchen collection promotion"
-        >
-          <div className="md:w-2/3 p-8 md:p-12">
-            <h2 className="text-3xl font-bold mb-6 text-button-darkHover">Discover Our Kitchen Collection</h2>
-            <p className="text-lg text-primary-dark mb-8">
-              Our carefully curated products blend functionality with aesthetic appeal, 
-              creating spaces that reflect your unique style and personality.
-            </p>
-            <motion.button 
-              className="bg-button-dark text-white px-8 py-3 rounded-sm font-medium hover:bg-button-darkHover transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Browse all kitchen products"
+      <main className="min-h-screen bg-background-light">
+        {/* Moroccan-inspired header */}
+        <header className="relative overflow-hidden bg-gradient-to-b from-primary-light to-background-light py-16 px-4 md:px-8">
+          <div className="absolute inset-0 opacity-10" style={{
+            backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')"
+          }}></div>
+          <div className="max-w-6xl mx-auto relative z-10">
+            <motion.h1 
+              className="text-4xl md:text-5xl font-moroccan text-primary-dark mb-6 text-center"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              Shop All Products
-            </motion.button>
+              Treasures of Morocco
+            </motion.h1>
+            <motion.p 
+              className="text-xl text-primary-dark text-center max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              Discover centuries of poetic wisdom and artisanal mastery in our curated collection
+            </motion.p>
           </div>
+        </header>
 
-          <div className="md:w-1/3">
-            <div className="h-full relative overflow-hidden float-end">
-              <picture>
-                <source 
-                  type="image/webp" 
-                  srcSet="/images/kitchen.jpeg"
-                />
-                <img 
-                  src="/images/kitchen.jpeg" 
-                  alt="Modern kitchen with stylish appliances and accessories" 
-                  className="w-full h-full object-cover transition-all duration-300 hover:scale-110"
-                  loading="lazy"
-                  width="400"
-                  height="300"
-                />
-              </picture>
-            </div>
+        {/* Featured Products Section with Swiper */}
+        <section className="max-w-7xl mx-auto px-4 md:px-8 py-16">
+          <div className="mb-16">
+            <h2 className="text-3xl font-moroccan text-primary-dark mb-8 text-center">Featured Collection</h2>
+            
+            <Swiper
+              spaceBetween={24}
+              slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 5 }
+              }}
+              className="product-swiper"
+            >
+              {products.map((product) => (
+                <SwiperSlide key={product.id}>
+                  <motion.div
+                    variants={productVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    className="relative group"
+                    onMouseEnter={() => setHoveredProduct(product.id)}
+                    onMouseLeave={() => setHoveredProduct(null)}
+                    onClick={() => navigateToProductPage(product)}
+                  >
+                    <div className="relative h-80 overflow-hidden bg-background-flashLIght">
+                      <img
+                        src={
+                          hoveredProduct === product.id
+                            ? product.images[1] || product.images[0]
+                            : product.images[0]
+                        }
+                        alt={product.name}
+                        className="w-full h-full object-cover transition-opacity duration-300"
+                      />
+
+                      {product.inStock === false && (
+                        <div className="absolute top-2 right-2 bg-primary-dark text-white text-xs font-medium px-2 py-1 rounded">
+                          Out of stock
+                        </div>
+                      )}
+
+                      <div
+                        className={`absolute bottom-0 left-0 right-0 bg-primary-dark bg-opacity-90 text-white p-3 transition-all duration-300 ${
+                          hoveredProduct === product.id
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-full opacity-0"
+                        }`}
+                      >
+                        <p className="text-xs line-clamp-2">{product.description}</p>
+                      </div>
+
+                      <div
+                        className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity ${
+                          hoveredProduct === product.id ? "opacity-100" : "opacity-0"
+                        }`}
+                      >
+                        <button
+                          className="bg-white text-primary-dark px-4 py-2 text-xs font-medium hover:bg-background-flashLIght transition-colors border border-primary-dark"
+                          onClick={(e) => openQuickView(product, e)}
+                        >
+                          QUICK VIEW
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-4 h-24 flex flex-col justify-between border border-t-0 border-gray-200">
+                      <h3 className="text-sm font-normal line-clamp-2 text-primary-black">
+                        {product.name}
+                      </h3>
+                      <div className="flex justify-between items-center">
+                        <p className="text-primary-dark font-medium text-sm">
+                          {product.currency || '$'}{product.discountPrice || product.price}
+                        </p>
+                        <p className="text-xs text-gray-500 capitalize">{product.category || 'Artifact'}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
-        </motion.section>
+          
+          {/* Moroccan-style CTA Section with video preview */}
+          <motion.section 
+            className="flex flex-col md:flex-row bg-gradient-to-r from-button-dark to-primary-dark rounded-sm overflow-hidden shadow-xl h-72 relative"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Moroccan pattern overlay */}
+            <div className="absolute inset-0 opacity-10" style={{
+              backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==')"
+            }}></div>
+            
+            <div className="md:w-2/3 p-8 md:p-12 relative z-10">
+              <h2 className="text-3xl font-moroccan text-primary-light mb-6">Explore Our Poetry Collection</h2>
+              <p className="text-lg text-primary-light/90 mb-8">
+                Immerse yourself in the lyrical beauty of Moroccan poetry, where each verse tells a story of tradition, love, and wisdom.
+              </p>
+              <motion.button 
+                className="bg-primary-light text-primary-dark px-8 py-3 rounded-sm font-medium hover:bg-white transition-colors flex items-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowVideoModal(true)}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                </svg>
+                Watch Our Story
+              </motion.button>
+            </div>
+
+            <div className="md:w-1/3 relative">
+              <div className="h-full relative overflow-hidden cursor-pointer" onClick={() => setShowVideoModal(true)}>
+                <div className="absolute inset-0 bg-black/30 z-10 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-primary-dark rounded-full flex items-center justify-center transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white ml-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+                <img 
+                  src="/images/moroccan-poetry.jpg" 
+                  alt="Ancient Moroccan poetry book with intricate designs" 
+                  className="w-full h-full object-cover transition-all duration-700 hover:scale-110"
+                  loading="lazy"
+                  srcSet="/images/moroccan-poetry.jpg 1x, /images/moroccan-poetry@2x.jpg 2x"
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  }}
+                />
+              </div>
+            </div>
+          </motion.section>
+        </section>
+
+        {/* Video Modal */}
+        <AnimatePresence>
+          {showVideoModal && (
+            <motion.div 
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setShowVideoModal(false)}
+            >
+              <motion.div 
+                className="relative w-full max-w-4xl bg-black rounded-lg overflow-hidden"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: "spring", damping: 25 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  className="absolute top-4 right-4 z-10 text-white hover:text-primary-dark transition-colors"
+                  onClick={() => setShowVideoModal(false)}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                
+                <div className="aspect-w-16 aspect-h-9 w-full">
+                  <iframe 
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&rel=0"
+                    title="Moroccan Poetry Collection"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                
+                <div className="p-6 bg-gradient-to-t from-black to-transparent absolute bottom-0 left-0 right-0">
+                  <h3 className="text-2xl font-moroccan text-white mb-2">The Art of Moroccan Poetry</h3>
+                  <p className="text-primary-light/80">
+                    Discover the rich tradition of Moroccan poetry through this immersive journey.
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
     </>
   );
 };
 
-// For better minification in production
 export default React.memo(AsymmetricalProductShowcase);
